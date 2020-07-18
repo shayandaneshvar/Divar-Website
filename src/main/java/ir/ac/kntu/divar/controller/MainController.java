@@ -7,14 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.stream.Collectors;
+
 @Controller
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class MainController {
     private final LocationService service;
 
-    @GetMapping(value = {"/","index","index.html"})
+    @GetMapping(value = {"/", "index", "index.html"})
     public String getIndex(Model model) {
-        model.addAttribute("cities", service.getAllCities());
+        model.addAttribute("cities", service.getAllCities().stream()
+                .distinct().collect(Collectors.toList()));
         return "index";
     }
 

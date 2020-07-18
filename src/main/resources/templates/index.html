@@ -23,20 +23,42 @@
           href="https://s100.divarcdn.com/statics/2020/07/chunk-1.369c89ae.css">
     <link data-chunk="main" rel="stylesheet"
           href="https://s100.divarcdn.com/statics/2020/07/chunk-10.de2181b2.css">
+    <script type="text/javascript">
+        function filter() {
+            let city = document.getElementById("search");
+            let elements = document.getElementsByClassName("myBtn");
+            console.log(city.value);
+            for (let i = 0; i < elements.length; i++) {
+                let value = elements.item(i);
+                if (value.tagName === "DIV") {
+                    let v = value.getElementsByTagName('a')[0];
+                    let x = v.getElementsByTagName('h2')[0].innerHTML;
+                    if(!x.includes(city.value)){
+                        value.style.display="none";
+                    }else {
+                        value.style.display="inherit";
+                    }
+                }
+            }
+        }
+        console.log("OK");
+    </script>
     <style>
-        .myBtn{
-            background-color: #e6af2e!important;
+        .myBtn {
+            background-color: #e6af2e !important;
             border: 0 !important;
         }
-        .myLink{
-            color: #ececec!important;
-        }
-        .myBtn:hover{
-            background-color: #f5d061!important;
+
+        .myLink {
+            color: #ececec !important;
         }
 
-        #myBtnIn:hover{
-            background-color: #f5d061!important;
+        .myBtn:hover {
+            background-color: #f5d061 !important;
+        }
+
+        #myBtnIn:hover {
+            background-color: #f5d061 !important;
         }
 
     </style>
@@ -46,19 +68,20 @@
 
 <div id="app">
     <nav class="ui secondary top fixed navbar menu"
-         style="background-color:#222831!important;" >
-        <a target="_self" class=""href="/">
-        <img src="./../static/icons8-brick-wall-641.png" alt
-             th:src="@{/icons8-brick-wall-641.png}" style="transform:
+         style="background-color:#222831!important;">
+        <a target="_self" class="" href="/">
+            <img src="../static/images/icons8-brick-wall-641.png" alt
+                 th:src="@{/images/icons8-brick-wall-641.png}"
+                 style="transform:
              scale(0.85);border-radius: 8%;">
-    </a>
+        </a>
 
 
         <div class="menu links"><a class="item link myLink"
                                    href="/my-divar/my-posts">دیوار
             من</a><a href="https://help.divar.ir"
                      class="item link myLink">پشتیبانی
-            </a><a class="item link myLink" href="/contact">تماس با ما</a>
+        </a><a class="item link myLink" href="/contact">تماس با ما</a>
             <div class="item newButton"><a
                     class="ui button buttons buttons--red divari-colored myBtn"
                     role="button" href="/new">ثبت آگهی</a></div>
@@ -71,18 +94,21 @@
                      style="background-color: #282f44;">
                     <div class="computer city-home">
                         <div class="ui fluid left icon input">
-                            <input type="text"
-                                   placeholder="جست&zwnj;و&zwnj;جوی سریع نام شهر...">
+                            <input type="text" id="search"
+                                   placeholder="جست&zwnj;و&zwnj;جوی سریع نام شهر..."
+                                   onchange="filter()">
                             <i aria-hidden="true" class="search icon"
                                style="background-color: #e6af2e!important;"></i>
                         </div>
                         <div class="city-group">
-                            <div class="city-group__header myLink">همه&zwnj;ی شهرها
+                            <div class="city-group__header myLink">همه&zwnj;ی
+                                شهرها
                             </div>
                             <div
-                                 class="ui doubling five cards">
+                                    class="ui doubling five cards">
 
-                                <div th:each="city : ${cities}" class="ui card city myBtn">
+                                <div th:each="city : ${cities}"
+                                     class="ui card city myBtn">
                                     <a target="_self"
                                        class="button " id="myBtnIn"
                                        role="button"
@@ -95,7 +121,6 @@
                                     </a>
 
                                 </div>
-
 
 
                             </div>
