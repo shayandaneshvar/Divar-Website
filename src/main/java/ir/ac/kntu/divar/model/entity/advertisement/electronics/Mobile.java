@@ -1,4 +1,4 @@
-package ir.ac.kntu.divar.model.entity;
+package ir.ac.kntu.divar.model.entity.advertisement.electronics;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,10 +10,11 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
-@Table(name = "LAPTOP")
-@Entity(name = "Laptop")
+@Table(name = "MOBILE")
+@Entity(name = "Mobile")
 @EqualsAndHashCode(callSuper = true)
-public class Laptop extends Computer {
+public class Mobile extends ElectronicsAdvertisement {
     @Column(length = 30)
     private String brand;
+    private Boolean tablet;
 }

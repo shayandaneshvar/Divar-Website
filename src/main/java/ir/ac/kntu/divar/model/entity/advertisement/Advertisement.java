@@ -1,5 +1,8 @@
-package ir.ac.kntu.divar.model.entity;
+package ir.ac.kntu.divar.model.entity.advertisement;
 
+import ir.ac.kntu.divar.model.entity.BaseEntity;
+import ir.ac.kntu.divar.model.entity.location.City;
+import ir.ac.kntu.divar.model.entity.location.Zone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

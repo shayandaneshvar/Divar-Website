@@ -1,6 +1,6 @@
 package ir.ac.kntu.divar.controller;
 
-import ir.ac.kntu.divar.model.service.LocationService;
+import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

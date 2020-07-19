@@ -1,4 +1,4 @@
-package ir.ac.kntu.divar.model.entity;
+package ir.ac.kntu.divar.model.entity.advertisement.electronics;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,8 +9,8 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
-@Table(name = "PC")
-@Entity(name = "PC")
+@Table(name = "CONSOLE")
+@Entity(name = "Console")
 @EqualsAndHashCode(callSuper = true)
-public class PC extends Computer {
+public class Console extends Computer {
 }

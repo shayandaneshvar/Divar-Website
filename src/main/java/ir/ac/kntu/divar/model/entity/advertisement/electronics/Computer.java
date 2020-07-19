@@ -1,4 +1,4 @@
-package ir.ac.kntu.divar.model.entity;
+package ir.ac.kntu.divar.model.entity.advertisement.electronics;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

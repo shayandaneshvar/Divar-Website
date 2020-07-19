@@ -1,5 +1,6 @@
-package ir.ac.kntu.divar.model.entity;
+package ir.ac.kntu.divar.model.entity.advertisement.realestate;
 
+import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

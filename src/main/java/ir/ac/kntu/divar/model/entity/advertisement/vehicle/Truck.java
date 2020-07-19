@@ -1,4 +1,4 @@
-package ir.ac.kntu.divar.model.entity;
+package ir.ac.kntu.divar.model.entity.advertisement.vehicle;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,10 +11,10 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
-@Table(name = "CAR")
-@Entity(name = "Car")
+@Table(name = "TRUCK")
+@Entity(name = "Truck")
 @Inheritance(strategy = InheritanceType.JOINED)
 @EqualsAndHashCode(callSuper = true)
-public class Car extends VehicleAdvertisement {
+public class Truck extends VehicleAdvertisement {
     private Double kilometerage;
 }

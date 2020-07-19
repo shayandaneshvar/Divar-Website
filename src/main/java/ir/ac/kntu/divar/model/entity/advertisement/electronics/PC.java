@@ -1,4 +1,4 @@
-package ir.ac.kntu.divar.model.entity;
+package ir.ac.kntu.divar.model.entity.advertisement.electronics;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,9 +9,8 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
-@Table(name = "RESIDENTIAL_SELL")
-@Entity(name = "ResidentialSell")
+@Table(name = "PC")
+@Entity(name = "PC")
 @EqualsAndHashCode(callSuper = true)
-public class ResidentialSell extends RealEstateAdvertisement {
-    private Double price;
+public class PC extends Computer {
 }

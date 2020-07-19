@@ -1,5 +1,7 @@
-package ir.ac.kntu.divar.model.entity;
+package ir.ac.kntu.divar.model.entity.user;
 
+import ir.ac.kntu.divar.model.entity.BaseEntity;
+import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

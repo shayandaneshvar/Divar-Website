@@ -1,9 +1,9 @@
-package ir.ac.kntu.divar.model.service;
+package ir.ac.kntu.divar.model.service.location;
 
-import ir.ac.kntu.divar.model.entity.City;
-import ir.ac.kntu.divar.model.entity.Zone;
-import ir.ac.kntu.divar.model.repo.CityRepository;
-import ir.ac.kntu.divar.model.repo.ZoneRepository;
+import ir.ac.kntu.divar.model.entity.location.City;
+import ir.ac.kntu.divar.model.entity.location.Zone;
+import ir.ac.kntu.divar.model.repo.location.CityRepository;
+import ir.ac.kntu.divar.model.repo.location.ZoneRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
