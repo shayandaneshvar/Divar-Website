@@ -20,6 +20,15 @@ public class RealEstateController {
     private final ResidentialSellService residentialSellService;
     private final ResidentialRentService residentialRentService;
 
+    @GetMapping()
+    public String realEstate(@PathVariable String city, Model model){
+        model.addAttribute("ads", realEstateService.getAllByCity(city));
+        model.addAttribute("city", city);
+        RealEstateFilterDTO dto = new RealEstateFilterDTO();
+        model.addAttribute("dto", dto);
+        return "real-estate";
+    }
+
     @GetMapping("/buy-residential")
     public String buyResidential(@PathVariable String city, Model model) {
         model.addAttribute("ads", residentialSellService.getAllByCity(city));
@@ -85,6 +94,16 @@ public class RealEstateController {
         model.addAttribute("city", city);
         model.addAttribute("ads", residentialSellService.filter(city,dto));
         model.addAttribute("address","buy-residential");
+        model.addAttribute("dto", dto);
+        return "sub-real-estate";
+    }
+
+    @PostMapping()
+    public String filterRealEstate(@PathVariable String city,
+                                   @ModelAttribute RealEstateFilterDTO dto,
+                                   Model model){
+        model.addAttribute("city", city);
+        model.addAttribute("ads", realEstateService.filter(city,dto));
         model.addAttribute("dto", dto);
         return "sub-real-estate";
     }

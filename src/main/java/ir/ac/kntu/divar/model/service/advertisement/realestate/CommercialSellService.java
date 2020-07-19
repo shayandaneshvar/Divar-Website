@@ -33,6 +33,6 @@ public class CommercialSellService {
         City city = locationService.getCity(input).orElseThrow();
         List<CommercialSell> result = repository
                 .getAllByCityAndZoneIn(city, list);
-        return (List<ResidentialSell>) RealEstateService.filter(result,dto);
+        return (List<ResidentialSell>) RealEstateService.filterUtil(result,dto);
     }
 }
