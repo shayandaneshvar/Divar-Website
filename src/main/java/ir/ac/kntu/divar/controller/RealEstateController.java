@@ -42,6 +42,29 @@ public class RealEstateController {
         return "sub-real-estate-rent";
     }
 
+    @GetMapping("/buy-commercial")
+    public String buyCommercial(@PathVariable String city, Model model) {
+        model.addAttribute("ads", commercialSellService.getAllByCity(city));
+        model.addAttribute("cat", "فروش تجاری");
+        model.addAttribute("city", city);
+        RealEstateFilterDTO dto = new RealEstateFilterDTO();
+        model.addAttribute("address","buy-commercial");
+        model.addAttribute("dto", dto);
+        return "sub-real-estate";
+    }
+
+    @PostMapping("/buy-commercial")
+    public String filterBuyCommercial(@PathVariable String city,
+                                       @ModelAttribute RealEstateFilterDTO dto,
+                                       Model model) {
+        model.addAttribute("cat", "فروش تجاری");
+        model.addAttribute("city", city);
+        model.addAttribute("ads", commercialSellService.filter(city,dto));
+        model.addAttribute("address","buy-commercial");
+        model.addAttribute("dto", dto);
+        return "sub-real-estate";
+    }
+
     @PostMapping("/rent-residential")
     public String filterRentResidential(@PathVariable String city,
                                        @ModelAttribute RealEstateFilterDTO dto,
