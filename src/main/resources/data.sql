@@ -146,11 +146,11 @@ insert into vehicle(for_rent,model,price,production_year,id) values (false,"comp
 insert into truck(kilometerage,id) values (300000,25);
 
 insert into advertisement(id,ad_type,description,exchange,has_image,mobile,picture,title,urgent,city_id,zone_id) values (null,"REQUESTED","نوساز",false,false,"09971303412",null,"آپارتمان شیک",false,1,1);
-insert into real_estate(area,rooms,type,id) values (110.5,2,"REAL_STATE",26);
+insert into real_estate(area,rooms,type,id) values (110.5,2,"REAL_ESTATE",26);
 insert into residential_sell(price,id) values(1000000,26);
 
 insert into advertisement(id,ad_type,description,exchange,has_image,mobile,picture,title,urgent,city_id,zone_id) values (null,"ON_SALE","نوساز",true,false,"09971303412",null,"Good آپارتمان شیک",false,1,7);
-insert into real_estate(area,rooms,type,id) values (120.5,3,"REAL_STATE",27);
+insert into real_estate(area,rooms,type,id) values (120.5,3,"REAL_ESTATE",27);
 insert into residential_sell(price,id) values(900000,27);
 
 insert into advertisement(id,ad_type,description,exchange,has_image,mobile,picture,title,urgent,city_id,zone_id) values (null,"ON_SALE","نوساز",true,false,"09981303412",null,"Good مان آپارتمان",false,1,3);
