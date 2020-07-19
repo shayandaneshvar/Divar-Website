@@ -245,13 +245,13 @@
                                          th:text="${ad.getTitle()}">
                                         ٤٧متر فول امکانات
                                     </div>
-                                    <div th:if="${(ad.price)==-2}"
+                                    <div th:if="${(ad.rent)==-2}"
                                          class="body-12 post-card__description"
                                          style=" color: #e6af2e;">
                                         توافقی
                                     </div>
-                                    <div th:if="${(ad.price)!=-2}" th:text="
-                                    ${ad.price.toString()}"
+                                    <div th:if="${(ad.rent)!=-2}" th:text="
+                                    ${ad.rent.toString()}"
                                          class="body-12 post-card__description"
                                          style=" color: #e6af2e;">
                                         توافقی

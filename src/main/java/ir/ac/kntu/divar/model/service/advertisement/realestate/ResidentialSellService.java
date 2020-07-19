@@ -36,24 +36,6 @@ public class ResidentialSellService {
         City city = locationService.getCity(input).orElseThrow();
         List<ResidentialSell> result = repository
                 .getAllByCityAndZoneIn(city, list);
-        if (dto.getPersonal() != dto.getRealEstate()) {
-            RealEstateAdvertisement.AdvertiserType filter;
-            if (dto.getPersonal()) {
-                filter = RealEstateAdvertisement.AdvertiserType.REAL_ESTATE;
-            } else {
-                filter = RealEstateAdvertisement.AdvertiserType.PERSONAL;
-            }
-            result = result.stream().filter(z -> z.getType().equals(filter))
-                    .collect(Collectors.toList());
-        }
-        if (dto.getUrgentOnly()) {
-            result = result.stream().filter(Advertisement::getUrgent)
-                    .collect(Collectors.toList());
-        }
-        if (dto.getWithImageOnly()) {
-            result = result.stream().filter(Advertisement::getHasImage)
-                    .collect(Collectors.toList());
-        }
-        return result;
+        return (List<ResidentialSell>) RealEstateService.filter(result,dto);
     }
 }

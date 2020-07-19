@@ -26,8 +26,32 @@ public class RealEstateController {
         model.addAttribute("cat", "فروش مسکونی");
         model.addAttribute("city", city);
         RealEstateFilterDTO dto = new RealEstateFilterDTO();
+        model.addAttribute("address","buy-residential");
         model.addAttribute("dto", dto);
         return "sub-real-estate";
+    }
+
+    @GetMapping("/rent-residential")
+    public String rentResidential(@PathVariable String city,Model model){
+        model.addAttribute("ads", residentialRentService.getAllByCity(city));
+        model.addAttribute("cat", "اجاره مسکونی");
+        model.addAttribute("city", city);
+        model.addAttribute("address","rent-residential");
+        RealEstateFilterDTO dto = new RealEstateFilterDTO();
+        model.addAttribute("dto", dto);
+        return "sub-real-estate-rent";
+    }
+
+    @PostMapping("/rent-residential")
+    public String filterRentResidential(@PathVariable String city,
+                                       @ModelAttribute RealEstateFilterDTO dto,
+                                       Model model) {
+        model.addAttribute("cat", "اجاره مسکونی");
+        model.addAttribute("city", city);
+        model.addAttribute("ads", residentialRentService.filter(city,dto));
+        model.addAttribute("dto", dto);
+        model.addAttribute("address","rent-residential");
+        return "sub-real-estate-rent";
     }
 
     @PostMapping("/buy-residential")
@@ -37,6 +61,7 @@ public class RealEstateController {
         model.addAttribute("cat", "فروش مسکونی");
         model.addAttribute("city", city);
         model.addAttribute("ads", residentialSellService.filter(city,dto));
+        model.addAttribute("address","buy-residential");
         model.addAttribute("dto", dto);
         return "sub-real-estate";
     }
