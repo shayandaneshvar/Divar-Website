@@ -25,6 +25,10 @@ public class LocationService {
         return zoneRepository.findByCity(city);
     }
 
+    public List<Zone> getZonesContaining(String name) {
+        return zoneRepository.findAllByNameContaining(name);
+    }
+
     public Optional<City> getCity(String city) {
         return cityRepository.getByName(city);
     }

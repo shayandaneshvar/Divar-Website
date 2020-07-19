@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ZoneRepository extends JpaRepository<Zone, Long> {
     List<Zone> findByCity(City city);
+    List<Zone> findAllByNameContaining(String name);
 }

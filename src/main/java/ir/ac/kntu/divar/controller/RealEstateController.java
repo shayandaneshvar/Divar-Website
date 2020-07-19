@@ -1,5 +1,6 @@
 package ir.ac.kntu.divar.controller;
 
+import ir.ac.kntu.divar.model.dto.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.CommercialSellService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.RealEstateService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.ResidentialRentService;
@@ -8,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/{city}/real-estate")
@@ -25,6 +24,20 @@ public class RealEstateController {
     public String buyResidential(@PathVariable String city, Model model) {
         model.addAttribute("ads", residentialSellService.getAllByCity(city));
         model.addAttribute("cat", "فروش مسکونی");
+        model.addAttribute("city", city);
+        RealEstateFilterDTO dto = new RealEstateFilterDTO();
+        model.addAttribute("dto", dto);
+        return "sub-real-estate";
+    }
+
+    @PostMapping("/buy-residential")
+    public String filterBuyResidential(@PathVariable String city,
+                                       @ModelAttribute RealEstateFilterDTO dto,
+                                       Model model) {
+        model.addAttribute("cat", "فروش مسکونی");
+        model.addAttribute("city", city);
+        model.addAttribute("ads", residentialSellService.filter(city,dto));
+        model.addAttribute("dto", dto);
         return "sub-real-estate";
     }
 }
