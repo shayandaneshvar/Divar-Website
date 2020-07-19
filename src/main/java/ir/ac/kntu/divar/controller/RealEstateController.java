@@ -24,8 +24,7 @@ public class RealEstateController {
     @GetMapping("/buy-residential")
     public String buyResidential(@PathVariable String city, Model model) {
         model.addAttribute("ads", residentialSellService.getAllByCity(city));
-        model.addAttribute("cat", "املاک");
-        model.addAttribute("subCat", "فروش مسکونی");
+        model.addAttribute("cat", "فروش مسکونی");
         return "sub-real-estate";
     }
 }

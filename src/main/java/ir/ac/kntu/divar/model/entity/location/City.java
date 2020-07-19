@@ -20,6 +20,6 @@ import javax.validation.constraints.NotBlank;
 public class City extends BaseEntity<Long> {
     @NotBlank
     @Basic(optional = false)
-    @Column(length = 40,name = "_name")
+    @Column(length = 40,name = "_name",unique = true)
     private String name;
 }

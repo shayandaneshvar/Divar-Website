@@ -11,7 +11,6 @@ insert into city(id,_name) values (null,"تبریز");
 insert into city(id,_name) values (null,"بندر عباس");
 insert into city(id,_name) values (null,"اهواز");
 insert into city(id,_name) values (null,"محمودآباد");
-insert into city(id,_name) values (null,"محمودآباد");
 insert into city(id,_name) values (null,"یزد");
 insert into city(id,_name) values (null,"اصفهان");
 insert into city(id,_name) values (null,"شهرکرد");

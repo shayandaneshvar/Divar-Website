@@ -1,5 +1,4 @@
 
-
 create table divar
 (
     id bigint auto_increment,
@@ -20,7 +19,7 @@ create table user
 create table city
 (
     id   bigint auto_increment,
-    _name varchar(40) not null,
+    _name varchar(40) not null unique ,
     primary key (id)
 )engine=MyISAM;
 
