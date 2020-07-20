@@ -101,4 +101,21 @@ public class ElectronicsController {
         model.addAttribute("dto", dto);
         return "sub-electronics";
     }
+    @GetMapping()
+    public String getElectronics(@PathVariable String city, Model model) {
+        model.addAttribute("ads", electronicsService.getAllByCity(city));
+        model.addAttribute("city", city);
+        model.addAttribute("dto", new GeneralFilterDTO());
+        return "electronics";
+    }
+
+    @PostMapping()
+    public String filterGetElectronics(@PathVariable String city, Model model,
+                                    @ModelAttribute GeneralFilterDTO dto) {
+        model.addAttribute("ads", electronicsService.filter(city, dto));
+        model.addAttribute("city", city);
+        model.addAttribute("dto", dto);
+        return "electronics";
+    }
+
 }
