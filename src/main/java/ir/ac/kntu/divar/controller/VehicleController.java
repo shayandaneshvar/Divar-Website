@@ -1,7 +1,6 @@
 package ir.ac.kntu.divar.controller;
 
 import ir.ac.kntu.divar.model.dto.VehicleFilterDTO;
-import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Truck;
 import ir.ac.kntu.divar.model.service.advertisement.vehicle.CarService;
 import ir.ac.kntu.divar.model.service.advertisement.vehicle.TruckService;
 import ir.ac.kntu.divar.model.service.advertisement.vehicle.VehicleService;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class VehicleController {
     private final CarService carService;
     private final TruckService truckService;
-    private VehicleService vehicleService;
+    private final VehicleService vehicleService;
 
     @GetMapping("/cars")
     public String getCars(@PathVariable String city, Model model) {
@@ -32,7 +31,7 @@ public class VehicleController {
     @PostMapping("/cars")
     public String filterGetCars(@PathVariable String city, Model model,
                                 @ModelAttribute VehicleFilterDTO dto) {
-        model.addAttribute("ads", carService.filter(city,dto));
+        model.addAttribute("ads", carService.filter(city, dto));
         model.addAttribute("cat", "خودروی سواری");
         model.addAttribute("city", city);
         model.addAttribute("address", "cars");
@@ -50,10 +49,10 @@ public class VehicleController {
         return "sub-vehicle";
     }
 
-    @PostMapping("/trucks")// FIXME: 7/20/2020
+    @PostMapping("/trucks")
     public String filterGetTrucks(@PathVariable String city, Model model,
-                                @ModelAttribute VehicleFilterDTO dto) {
-        model.addAttribute("ads", truckService.filter(city,dto));
+                                  @ModelAttribute VehicleFilterDTO dto) {
+        model.addAttribute("ads", truckService.filter(city, dto));
         model.addAttribute("cat", "خودروی سنگین");
         model.addAttribute("city", city);
         model.addAttribute("address", "trucks");
@@ -61,4 +60,20 @@ public class VehicleController {
         return "sub-vehicle";
     }
 
+    @GetMapping()
+    public String getVehicles(@PathVariable String city, Model model) {
+        model.addAttribute("ads", vehicleService.getAllByCity(city));
+        model.addAttribute("city", city);
+        model.addAttribute("dto", new VehicleFilterDTO());
+        return "vehicle";
+    }
+
+    @PostMapping()
+    public String filterGetVehicles(@PathVariable String city, Model model,
+                                    @ModelAttribute VehicleFilterDTO dto) {
+        model.addAttribute("ads", vehicleService.filter(city, dto));
+        model.addAttribute("city", city);
+        model.addAttribute("dto", dto);
+        return "vehicle";
+    }
 }
