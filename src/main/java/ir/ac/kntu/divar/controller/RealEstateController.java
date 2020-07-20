@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/{city}/real-estate")
+@RequestMapping("/ads/{city}/real-estate")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class RealEstateController {
     private final CommercialSellService commercialSellService;

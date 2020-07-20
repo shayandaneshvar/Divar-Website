@@ -98,16 +98,17 @@
                                         <li class="filter-category-list__item filter-category-list__item--inactive">
                                             <a class="filter-category-list__item-field filter-category-list__item-link"
                                                href="/tehran"
-                                               th:href="@{/{loc}(loc=${city})}"
+                                               th:href="@{/ads/{loc}(loc=${city})}"
                                                style="color: #ececec;">همهٔ آگهی&zwnj;ها</a>
                                         </li>
                                         <li class="filter-category-list__item filter-category-list__item--inactive filter-category-list__item--indented">
                                             <a class="filter-category-list__item-field filter-category-list__item-link"
                                                href="/{city}/real-estate"
-                                               th:href="@{/{loc}/real-estate(loc=${city})}"
+                                               th:href="@{/ads/{loc}/real-estate(loc=${city})}"
                                                style="color: #ececec;">املاک</a>
                                             <ul class="filter-category-list">
-                                                <a th:href="@{/{loc}/real-estate/buy-residential(loc=${city})}"
+                                                <a
+                                                        th:href="@{/ads/{loc}/real-estate/buy-residential(loc=${city})}"
                                                    href="/city/real-estate/buy-residential">
                                                     <li class="filter-category-list__item filter-category-list__item--active">
                                                         <div class="filter-category-list__item-field"
@@ -117,7 +118,7 @@
                                                     </li>
                                                 </a>
                                                 <a
-                                                        th:href="@{/{loc}/real-estate/rent-residential(loc=${city})}"
+                                                        th:href="@{/ads/{loc}/real-estate/rent-residential(loc=${city})}"
                                                    href="/city/real-estate/rent-residential">
                                                     <li class="filter-category-list__item filter-category-list__item--active">
                                                         <div class="filter-category-list__item-field"
@@ -127,7 +128,7 @@
                                                     </li>
                                                 </a>
                                                 <a
-                                                        th:href="@{/{loc}/real-estate/buy-commercial(loc=${city})}"
+                                                        th:href="@{/ads/{loc}/real-estate/buy-commercial(loc=${city})}"
                                                    href="/city/real-estate/buy-commercial">
                                                     <li class="filter-category-list__item filter-category-list__item--active">
                                                         <div class="filter-category-list__item-field"

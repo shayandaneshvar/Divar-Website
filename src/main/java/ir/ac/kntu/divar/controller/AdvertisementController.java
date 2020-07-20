@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/{city}")
+@RequestMapping(value = "/ads/{city}")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class AdvertisementController {
     private final AdvertisementService advertisementService;

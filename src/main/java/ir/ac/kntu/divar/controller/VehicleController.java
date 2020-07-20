@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/{city}/vehicles")
+@RequestMapping("/ads/{city}/vehicles")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class VehicleController {
     private final CarService carService;

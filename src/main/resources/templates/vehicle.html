@@ -79,13 +79,15 @@
                                 <div class="browse-accordion__body">
                                     <ul class="filter-category-list">
                                         <li class="filter-category-list__item filter-category-list__item--inactive">
-                                            <a class="filter-category-list__item-field filter-category-list__item-link" href="/tehran" th:href="@{/{loc}(loc=${city})}" style="color: #ececec;">همهٔ آگهی&zwnj;ها</a>
+                                            <a
+                                                    class="filter-category-list__item-field filter-category-list__item-link" href="/tehran" th:href="@{/ads/{loc}(loc=${city})}" style="color: #ececec;">همهٔ آگهی&zwnj;ها</a>
                                         </li>
                                         <li class="filter-category-list__item filter-category-list__item--inactive filter-category-list__item--indented">
-                                            <a class="filter-category-list__item-field filter-category-list__item-link" href="/{city}/vehicles" th:href="@{/{loc}/vehicles(loc=${city})}" style="color: #ececec;">وسایل نقلیه</a>
+                                            <a
+                                                    class="filter-category-list__item-field filter-category-list__item-link" href="/{city}/vehicles" th:href="@{/ads/{loc}/vehicles(loc=${city})}" style="color: #ececec;">وسایل نقلیه</a>
                                             <ul class="filter-category-list">
                                                 <a href="/"
-                                                   th:href="@{/{loc}/vehicles/cars(loc=${city})}">
+                                                   th:href="@{/ads/{loc}/vehicles/cars(loc=${city})}">
                                                     <li class="filter-category-list__item filter-category-list__item--active">
                                                         <div class="filter-category-list__item-field" style="color: #f5d061;">
                                                             خودروی سواری
@@ -94,7 +96,7 @@
 
                                                     </li></a>
                                                 <a href="/"
-                                                   th:href="@{/{loc}/vehicles/trucks(loc=${city})}">
+                                                   th:href="@{/ads/{loc}/vehicles/trucks(loc=${city})}">
                                                     <li class="filter-category-list__item filter-category-list__item--active">
                                                         <div class="filter-category-list__item-field" style="color: #f5d061;">
                                                             خودروی سنگین
@@ -224,7 +226,8 @@
                     <div style="padding-top:0px;padding-bottom:0px" class="browse-post-list">
 
                         <div th:each="ad:${ads}" class="col-xs-12 col-sm-6 col-xl-4 p-tb-large p-lr-gutter post-card-item">
-                            <a class="post-card" href="/v/٤٧متر-فول-امکانات_آپارتمان_تهران_بریانک_دیوار/wXUUwyWC" th:href="@{/ads/real-estate/{id}(id=${ad.id})}">
+                            <a class="post-card"
+                               href="/v/٤٧متر-فول-امکانات_آپارتمان_تهران_بریانک_دیوار/wXUUwyWC" th:href="@{/ads/vehicles/{id}(id=${ad.id})}">
                                 <div class="post-card__content">
                                     <div class="subtitle-16 post-card__title" style="color: #e6af2e;" th:text="${ad.getTitle()}">
                                         ٤٧متر فول امکانات

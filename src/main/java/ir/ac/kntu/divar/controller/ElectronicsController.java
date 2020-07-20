@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/{city}/electronics")
+@RequestMapping("/ads/{city}/electronics")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class ElectronicsController {
     private final ElectronicsService electronicsService;
