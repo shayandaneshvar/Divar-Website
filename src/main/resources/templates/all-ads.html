@@ -134,13 +134,6 @@
                                     <div class="subtitle-16 post-card__title" style="color: #e6af2e;" th:text="${ad.getTitle()}">
                                         ٤٧متر فول امکانات
                                     </div>
-                                    <div th:if="${(ad.price)==-2}" class="body-12 post-card__description" style=" color: #e6af2e;">
-                                        توافقی
-                                    </div>
-                                    <div th:if="${(ad.price)!=-2}" th:text="
-                                    ${ad.price.toString()}" class="body-12 post-card__description" style=" color: #e6af2e;">
-                                        توافقی
-                                    </div>
                                     <div class="body-12 post-card__info">
                                         <span th:if="${ad.urgent}" class="p-lr-xsmall post-card__info-urgent" style="color: #f5d061;">فوری</span>
                                         <span th:if="${ad.zone!=null}" th:text="${ad.zone.name}" class="post-card__info-label" style="color: #ececec !important;">در بریانک
