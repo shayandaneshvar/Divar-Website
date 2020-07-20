@@ -1,12 +1,10 @@
 package ir.ac.kntu.divar.model.service.advertisement.vehicle;
 
 import ir.ac.kntu.divar.model.dto.VehicleFilterDTO;
-import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
 import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Car;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.repo.advertisement.vehicle.CarRepository;
-import ir.ac.kntu.divar.model.service.advertisement.realestate.RealEstateService;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +31,7 @@ public class CarService {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
         City city = locationService.getCity(input).orElseThrow();
-        List<Car> result = repository
-                .getAllByCityAndZoneIn(city, list);
+        List<Car> result = repository.getAllByCityAndZoneIn(city, list);
         return (List<Car>) VehicleService.filterUtil(result, dto);
     }
 }
