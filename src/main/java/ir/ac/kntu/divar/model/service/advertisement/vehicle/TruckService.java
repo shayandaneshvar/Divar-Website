@@ -1,6 +1,6 @@
 package ir.ac.kntu.divar.model.service.advertisement.vehicle;
 
-import ir.ac.kntu.divar.model.dto.VehicleFilterDTO;
+import ir.ac.kntu.divar.model.dto.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Truck;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
@@ -23,7 +23,7 @@ public class TruckService {
         return repository.getAllByCity(city);
     }
 
-    public List<Truck> filter(String input, VehicleFilterDTO dto) {
+    public List<Truck> filter(String input, GeneralFilterDTO dto) {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
         City city = locationService.getCity(input).orElseThrow();
