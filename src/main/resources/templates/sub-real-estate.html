@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title th:text="${cat}"></title>
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
@@ -179,9 +180,11 @@
                                              style="color: #e6af2e;">فقط فوری&zwnj;ها
                                             <div class="browse-accordion__inline-field">
                                                 <div class="field-container on-off-field">
-                                                    <input type="checkbox"
-                                                           th:field="*{urgentOnly}"
-                                                           style="margin-left: 1em;">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                               th:field="*{urgentOnly}"
+                                                               style="margin-left: 1em;">
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
