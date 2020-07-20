@@ -32,4 +32,17 @@ public class LocationService {
     public Optional<City> getCity(String city) {
         return cityRepository.getByName(city);
     }
+
+    public City saveCity(String input){
+        return cityRepository.save(new City().setName(input));
+    }
+
+    public Optional<Zone> getZoneContainingAndCity(String zone, City city) {
+        return zoneRepository.findAllByNameContainingAndCityEquals(zone,city);
+    }
+
+    public Zone saveZone(String input, City city) {
+        Zone zone = new Zone().setName(input).setCity(city);
+        return zoneRepository.save(zone);
+    }
 }

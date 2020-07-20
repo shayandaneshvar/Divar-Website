@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ZoneRepository extends JpaRepository<Zone, Long> {
     List<Zone> findByCity(City city);
+
     List<Zone> findAllByNameContaining(String name);
+
+    Optional<Zone> findAllByNameContainingAndCityEquals(String name, City city);
 }

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ثبت آگهی جدید</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" sizes="64x64"
+          href="../static/images/icons8-brick-wall-64.png"
+          th:href="@{/images/icons8-brick-wall-64.png}">
+    <link rel="mask-icon"
+          href="https://s100.divarcdn.com/static/thewall-assets/safari-pinned-tab.svg"
+          color="#a62626">
+
+    <link data-chunk="main" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-1.369c89ae.css">
+    <link data-chunk="main" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-10.f61bd3cf.css">
+    <link data-chunk="PostSubmit" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-0.9730cb65.css">
+    <link data-chunk="PostSubmit" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-9.0c3b3f04.css">
+    <style>
+        .myBtn {
+            background-color: #e6af2e !important;
+            border: 0 !important;
+        }
+
+        .myLink {
+            color: #ececec !important;
+        }
+
+        .myBtn:hover {
+            background-color: #f5d061 !important;
+        }
+    </style>
+</head>
+<body dir="rtl" data-gr-c-s-loaded="true" cz-shortcut-listen="true"
+      style="background-image: url(../static/pictures/wall.jpg);background-size: cover;background-position-y: center;">
+
+
+<div id="app">
+    <nav class="ui secondary top fixed navbar menu" style="background-color:#222831!important;">
+        <a target="_self" class="" href="/">
+            <img src="../static/images/icons8-brick-wall-641.png" alt=""
+                 th:src="@{/images/icons8-brick-wall-641.png}" style="transform:
+             scale(0.85);border-radius: 8%;">
+        </a>
+
+
+        <div class="menu links">
+            <a class="item link myLink" href="/my-divar/my-posts">دیوار
+                من</a><a href="https://help.divar.ir" class="item link myLink">پشتیبانی
+        </a><a class="item link myLink" href="/contact">تماس با ما</a>
+            <div class="item newButton"><a
+                    class="ui button buttons buttons--red divari-colored myBtn"
+                    role="button" href="/new">ثبت آگهی</a></div>
+        </div>
+    </nav>
+    <div class="submit-post" style="background-color: transparent;">
+        <div class="ui container">
+            <div class="ui centered padded grid submit-post__grid aligned">
+                <div class="row" style="background-color: transparent;">
+                    <div class="right aligned ten wide computer twelve wide tablet column">
+                        <h1 class="submit-post__title" style="color: #e6af2e;">
+                            ثبت آگهی</h1>
+                        <div class="submit-post__form-wrapper"
+                             style="background-color: #282f44;">
+                            <div class="dim json-schema-form-dim">
+                                <div class="json-schema-form">
+                                    <form class="json-schema-form__form" th:object="${rs}"
+                                          method="post"
+                                          th:href="@{/new/buy-residential}"
+                                          href="/new/buy-residential"
+                                          enctype="multipart/form-data">
+                                        <div class="field-template">
+                                            <div class="field">
+                                                <div class="field-template__children">
+                                                    <fieldset id="root">
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="field-template__children">
+                                                                    <div class="location-selector">
+                                                                        <div class="location-selector__fields">
+                                                                            <div class="location-selector__city">
+                                                                                <div class="text-field"
+                                                                                     style="color: #ececec;">
+                                                                                    شهر
+                                                                                </div>
+                                                                              <label>
+                                                                                <input type="text" th:field="*{city}"
+                                                                                       class="ui search selection dropdown dropdowns">
+                                                                              </label>
+                                                                            </div>
+                                                                            <div class="location-selector__district">
+                                                                                <div class="text-field"
+                                                                                     style="color: #ececec;">
+                                                                                    محله
+                                                                                </div>
+                                                                              <label>
+                                                                                <input type="text" th:field="*{zone}"
+                                                                                       class="ui search selection dropdown dropdowns">
+                                                                              </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="field-template__children">
+                                                                    <div class="image-uploader">
+                                                                        <div class="text-field"
+                                                                             style="color: #ececec;">
+                                                                            عکس
+                                                                            آگهی
+                                                                        </div>
+                                                                        <div class="image-uploader__zone">
+                                                                            <div class="post-card__image">
+                                                                                <picture>
+                                                                                    <img alt="عکس پیدا نشد"
+                                                                                         src="/pictures/sada.jpg"
+                                                                                         class="post-card-image">
+                                                                                </picture>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <input class=""
+                                                                               value="آپلود عکس"
+                                                                               type="file"
+                                                                               name="uploadedImage"
+                                                                               accept="image/png, .jpeg, .jpg, image/gif">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="text-field"
+                                                                     style="color: #ececec;">
+                                                                    متراژ
+                                                                </div>
+                                                              <label>
+                                                                <input
+                                                                        type="text" th:field="*{area}"
+                                                                       class="ui search selection dropdown dropdowns">
+                                                              </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="text-field"
+                                                                     style="color: #ececec;">
+                                                                    آگهی&zwnj;دهنده
+                                                                </div>
+                                                                <div class="field-template__children">
+                                                                    <div class="field-radio-group"
+                                                                         id="root_user_type">
+                                                                        <div class="radio ">
+                                                                            <label><span>
+                                                                              <input type="radio" th:field="*{advertiser}"
+                                                                                    name="0.5807807417788717"
+                                                                                    required=""
+                                                                                    value="شخصی"><span
+                                                                                    style="color: #f5d061;">شخصی</span></span></label>
+                                                                        </div>
+                                                                        <div class="radio ">
+                                                                            <label><span><input th:field="*{advertiser}"
+                                                                                    type="radio"
+                                                                                    name="0.5807807417788717"
+                                                                                    required=""
+                                                                                    value="مشاور املاک"><span
+                                                                                    style="color: #f5d061;">مشاور املاک</span></span></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="text-field"
+                                                                     style="color: #ececec;">
+                                                                    قیمت کل
+                                                                </div>
+                                                              <label>
+                                                                <input
+                                                                        th:field="*{price}"
+                                                                        type="number"
+                                                                       class="ui search selection dropdown dropdowns">
+                                                              </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="text-field"
+                                                                     style="color: #ececec;">
+                                                                    تعداد اتاق
+                                                                </div>
+                                                              <label>
+                                                                <input
+                                                                        type="number" th:field="*{rooms}"
+                                                                       class="ui search selection dropdown dropdowns">
+                                                              </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="field-template__children">
+                                                                    <fieldset
+                                                                            id="root_contact">
+                                                                        <legend id="root_contact__title">
+                                                                            اطلاعات
+                                                                            تماس<span
+                                                                                class="required">*</span>
+                                                                        </legend>
+                                                                        <div class="field-template">
+                                                                            <div class="field">
+                                                                                <div class="text-field"
+                                                                                     style="color: #ececec;">
+                                                                                    شمارهٔ
+                                                                                    موبایل
+                                                                                </div>
+                                                                                <div class="field-template__children">
+                                                                                    <div class="text-input">
+                                                                                        <div class="required field text-input__field json-schema-form__text-input">
+                                                                                            <div class="ui input">
+                                                                                              <label>
+                                                                                                <input th:field="*{mobile}"
+                                                                                                        placeholder="شماره موبایل شما (**** *** 0911)"
+                                                                                                       required=""
+                                                                                                       type="text"
+                                                                                                       value=""
+                                                                                                       pattern="09[0-9]{9}">
+                                                                                              </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="text-field"
+                                                                     style="color: #ececec;">
+                                                                    عنوان آگهی
+                                                                </div>
+                                                                <div class="field-template__children">
+                                                                    <div class="text-input">
+                                                                        <div class="required field text-input__field json-schema-form__text-input">
+                                                                            <div class="ui input">
+                                                                              <label>
+                                                                                <input th:field="*{title}"
+                                                                                       required
+                                                                                       type="text"
+                                                                                       value="">
+                                                                              </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="text-field"
+                                                                     style="color: #ececec;">
+                                                                    توضیحات آگهی
+                                                                </div>
+                                                                <div class="field-template__children">
+                                                                    <div class="text-input">
+                                                                        <div class="required field text-input__field json-schema-form__text-input">
+                                                                            <textarea th:field="*{description}"
+                                                                                    placeholder="توضیحات را بنویسید."
+                                                                                    required=""
+                                                                                    type="text"
+                                                                                    rows="3"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input class="kt-button kt-button--primary json-schema-form__submit myBtn"
+                                               value="ثبت آگهی" type="submit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

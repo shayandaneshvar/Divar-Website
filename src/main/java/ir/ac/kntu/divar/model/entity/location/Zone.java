@@ -3,12 +3,14 @@ package ir.ac.kntu.divar.model.entity.location;
 import ir.ac.kntu.divar.model.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
 @Data
 @Entity(name = "Zone")
 @Table(name = "ZONE")
+@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 public class Zone extends BaseEntity<Long> {
     @Basic(optional = false)
