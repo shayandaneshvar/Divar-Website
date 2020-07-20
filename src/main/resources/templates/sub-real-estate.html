@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${cat}"></title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="https://s100.divarcdn.com/static/thewall-assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="https://s100.divarcdn.com/static/thewall-assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="https://s100.divarcdn.com/static/thewall-assets/favicon-16x16.png">
+    <link rel="mask-icon"
+          href="https://s100.divarcdn.com/static/thewall-assets/safari-pinned-tab.svg"
+          color="#a62626">
+    <link data-chunk="main" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-1.369c89ae.css">
+    <link data-chunk="main" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-10.f61bd3cf.css">
+
+    <style>
+        .myBtn {
+            background-color: #e6af2e !important;
+            border: 0 !important;
+        }
+
+        .myLink {
+            color: #ececec !important;
+        }
+
+        .myBtn:hover {
+            background-color: #f5d061 !important;
+        }
+
+        .post-card:after {
+            background-color: #f5d061;
+            -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+            visibility: hidden;
+            transition: -webkit-transform .25s ease-out;
+            transition: transform .25s ease-out;
+            will-change: transform, visibility;
+        }</style>
+    <script>
+        function filter() {
+            let search = document.getElementById("search").value;
+            let list = document.getElementsByClassName("post-card-item");
+            for (let i = 0; i < list.length; i++) {
+                try {
+                    if (list.item(i).getElementsByTagName("A").item(0).getElementsByTagName("DIV").item(0).innerText.includes(search)) {
+                        list.item(i).style.display = ""
+                    } else {
+                        list.item(i).style.display = "none"
+                    }
+                } finally {
+                    console.log("filtered results");
+                }
+            }
+        }
+    </script>
+</head>
+<body dir="rtl" data-gr-c-s-loaded="true" cz-shortcut-listen="true"
+      style="background-color: #282f44;">
+<div id="app">
+    <nav class="ui secondary top fixed navbar menu"
+         style="background-color:#222831!important;">
+        <a target="_self" class="" href="/">
+            <img src="../static/images/icons8-brick-wall-641.png" alt=""
+                 th:src="@{/images/icons8-brick-wall-641.png}" style="transform:
+             scale(0.85);border-radius: 8%;">
+        </a>
+        <div class="menu links"><a class="item link myLink"
+                                   href="/my-divar/my-posts">دیوار
+            من</a><a href="https://help.divar.ir" class="item link myLink">پشتیبانی
+        </a><a class="item link myLink" href="/contact">تماس با ما</a>
+            <div class="item newButton"><a
+                    class="ui button buttons buttons--red divari-colored myBtn"
+                    role="button" href="/new">ثبت آگهی</a></div>
+        </div>
+    </nav>
+    <div class="col-md-12 p-none browse">
+        <div class="sticky-outer-wrapper">
+            <div class="sticky-inner-wrapper "
+                 style="position:relative;top:0px">
+                <aside class="d-xs-none d-lg-block browse__sidebar">
+                    <div class="p-lr-gutter p-b-gutter filter-box">
+                        <div class="accordion ui browse-accordion">
+                            <div class="active title subtitle-16 p-tb-gutter browse-accordion__title browse-accordion__title--always-open"
+                                 style="color: #e6af2e;">
+                                دسته&zwnj;بندی&zwnj;ها
+                            </div>
+                            <div class="content active browse-accordion__content">
+                                <div class="browse-accordion__body">
+                                    <ul class="filter-category-list">
+                                        <li class="filter-category-list__item filter-category-list__item--inactive">
+                                            <a class="filter-category-list__item-field filter-category-list__item-link"
+                                               href="/tehran"
+                                               th:href="@{/ads/{loc}(loc=${city})}"
+                                               style="color: #ececec;">همهٔ آگهی&zwnj;ها</a>
+                                        </li>
+                                        <li class="filter-category-list__item filter-category-list__item--inactive filter-category-list__item--indented">
+                                            <a class="filter-category-list__item-field filter-category-list__item-link"
+                                               href="/{city}/real-estate"
+                                               th:href="@{/ads/{loc}/real-estate(loc=${city})}"
+                                               style="color: #ececec;">املاک</a>
+                                            <ul class="filter-category-list">
+                                                <li class="filter-category-list__item filter-category-list__item--active">
+                                                    <div class="filter-category-list__item-field"
+                                                         style="color: #f5d061;"
+                                                         th:text="${cat}">
+                                                        فروش مسکونی
+                                                    </div>
+
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <form
+                                            th:action="${'/' + city + '/real-estate/' + address}"
+                                            th:object="${dto}"
+                                            action="/city/real-estate/buy-residential"
+                                            method="post">
+
+                                        <div class="active title subtitle-16 p-tb-gutter browse-accordion__title "
+                                             style="color: #e6af2e;">محل
+                                        </div>
+                                        <div class="ui fluid left icon input"
+                                             style="height: 2em;width: 16em;margin-bottom: 1em;">
+                                            <label>
+                                                <input type="text"
+                                                       th:field="*{zone}"
+                                                       class=" icon left labeled  city-label">
+                                            </label>
+                                        </div>
+                                        <div class="title subtitle-16 p-tb-gutter browse-accordion__title "
+                                             style="color: #e6af2e;">فقط عکس&zwnj;دار
+                                            <div class="browse-accordion__inline-field">
+                                                <div class="field-container on-off-field">
+                                                    <label>
+                                                        <input
+                                                                type="checkbox"
+                                                                th:field="*{withImageOnly}"
+                                                                style="margin-left: 1em;">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="active title subtitle-16 p-tb-gutter browse-accordion__title "
+                                             style="color: #e6af2e;">آگهی&zwnj;دهنده
+                                        </div>
+                                        <div style="color: #e6af2e;"
+                                             class="title subtitle-16 p-tb-gutter  ">
+                                            شخصی&zwnj;<div
+                                                class="browse-accordion__inline-field">
+                                            <div class="field-container on-off-field">
+                                                <label>
+                                                    <input type="checkbox"
+                                                           th:field="*{personal}"
+                                                           style="margin-left: 1em;">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="title subtitle-16 p-tb-gutter  "
+                                             style="color: #e6af2e;">املاک&zwnj;<div
+                                                class="browse-accordion__inline-field">
+                                            <div class="field-container on-off-field">
+                                                <label>
+                                                    <input type="checkbox"
+                                                           th:field="*{realEstate}"
+                                                           style="margin-left: 1em;">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="title subtitle-16 p-tb-gutter browse-accordion__title "
+                                             style="color: #e6af2e;">فقط فوری&zwnj;ها
+                                            <div class="browse-accordion__inline-field">
+                                                <div class="field-container on-off-field">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                               th:field="*{urgentOnly}"
+                                                               style="margin-left: 1em;">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item newButton">
+                                            <input class="ui button buttons buttons--red divari-colored myBtn"
+                                                   type="submit" value="فیلتر"
+                                                   role="button">
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+        <header class="browse__header">
+            <div class="ui fluid left icon input">
+                <input type="text" id="search"
+                       placeholder="جست&zwnj;و&zwnj;جوی سریع ..."
+                       onchange="filter()">
+                <i aria-hidden="true" class="search icon"
+                   style="background-color: #e6af2e!important;"></i>
+            </div>
+            <div class="d-lg-none action-bar-container">
+                <div class="action-bar">
+                    <button class="chip chip--active action-bar__action action-bar__action--selected">
+                        <span>فروش مسکونی</span><span role="button" tabindex="0"
+                                                      class="action-bar__remove"><i
+                            aria-hidden="true"
+                            class="close icon action-bar__icon"></i></span>
+                    </button>
+                    <button class="chip  action-bar__action"><i
+                            aria-hidden="true"
+                            class="filter icon action-bar__icon"></i>فیلترها
+                    </button>
+                </div>
+            </div>
+        </header>
+        <main class="browse__main">
+
+
+            <div class="post-list-grid virtual-infinite-scroll">
+                <div style="top:0;position:absolute;height:100%;width:100%"
+                     class="virtual-infinite-scroll__viewport">
+                    <div style="padding-top:0px;padding-bottom:0px"
+                         class="browse-post-list">
+
+                        <div th:each="ad:${ads}"
+                             class="col-xs-12 col-sm-6 col-xl-4 p-tb-large p-lr-gutter post-card-item">
+                            <a class="post-card"
+                               href="/v/٤٧متر-فول-امکانات_آپارتمان_تهران_بریانک_دیوار/wXUUwyWC"
+                               th:href="@{/ads/real-estate/{id}(id=${ad.id})}">
+                                <div class="post-card__content">
+                                    <div class="subtitle-16 post-card__title"
+                                         style="color: #e6af2e;"
+                                         th:text="${ad.getTitle()}">
+                                        ٤٧متر فول امکانات
+                                    </div>
+                                    <div th:if="${(ad.price)==-2}"
+                                         class="body-12 post-card__description"
+                                         style=" color: #e6af2e;">
+                                        توافقی
+                                    </div>
+                                    <div th:if="${(ad.price)!=-2}" th:text="
+                                    ${ad.price.toString()}"
+                                         class="body-12 post-card__description"
+                                         style=" color: #e6af2e;">
+                                        توافقی
+                                    </div>
+                                    <div class="body-12 post-card__info">
+                                        <span th:if="${ad.urgent}"
+                                              class="p-lr-xsmall post-card__info-urgent"
+                                              style="color: #f5d061;">فوری</span>
+                                        <span th:if="${ad.zone!=null}"
+                                              th:text="${ad.zone.name}"
+                                              class="post-card__info-label"
+                                              style="color: #ececec !important;">در بریانک
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="post-card__image">
+                                    <picture th:if="${ad.hasImage}">
+                                        <img th:src="@{/pictures{pic}(pic=${ad.getPicture()})}"
+                                             alt="عکس پیدا نشد"
+                                             src="../static/pictures/sd.jpg"
+                                             class="post-card-image">
+                                    </picture>
+                                    <picture th:if="${!ad.hasImage}">
+                                        <img th:src="@{/pictures/default.png}"
+                                             alt="٤٧متر فول امکانات"
+                                             src="../static/pictures/default.png"
+                                             class="post-card-image">
+                                    </picture>
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>
