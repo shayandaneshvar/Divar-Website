@@ -5,12 +5,14 @@ import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
+@Accessors(chain = true)
 @Table(name = "DIVAR")
 @Entity(name = "Divar")
 @EqualsAndHashCode(callSuper = false)
