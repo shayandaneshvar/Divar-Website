@@ -1,6 +1,7 @@
 package ir.ac.kntu.divar.controller;
 
 import ir.ac.kntu.divar.exceptions.ComingSoonException;
+import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,11 @@ import java.util.stream.Collectors;
 @Controller
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class MainController {
-    private final LocationService service;
-
+    private final LocationService locationService;
+    private final UserService userService;
     @GetMapping(value = {"/", "index", "index.html"})
     public String getIndex(Model model) {
-        model.addAttribute("cities", service.getAllCities().stream()
+        model.addAttribute("cities", locationService.getAllCities().stream()
                 .distinct().collect(Collectors.toList()));
         return "index";
     }
@@ -42,7 +43,7 @@ public class MainController {
 
     @PostMapping("/login")
     public String register(@ModelAttribute String mobile) {
-        // TODO: 7/21/2020  
+        userService.getUser(mobile);
         return "redirect:/";
     }
 }

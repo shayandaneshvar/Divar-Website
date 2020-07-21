@@ -6,7 +6,9 @@ import ir.ac.kntu.divar.model.dto.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
+import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.repo.advertisement.realestate.ResidentialSellRepository;
+import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class ResidentialSellService {
     private final ResidentialSellRepository repository;
     private final LocationService locationService;
     private final ResidentialSellDto2Model converter;
-
+    private final UserService userService;
 
 
     public List<ResidentialSell> getAll() {
@@ -58,8 +60,10 @@ public class ResidentialSellService {
                     .saveZone(input.getZone(), city));
             res.setZone(zone);
         }
-        // FIXME: 7/21/2020
-        //user!
-        return repository.save(res);
+        User user = userService.getUser(input.getMobile());
+        res = repository.save(res);
+        user.getDivar().getUserAdvertisements().add(res);
+        userService.saveUser(user);
+        return res;
     }
 }
