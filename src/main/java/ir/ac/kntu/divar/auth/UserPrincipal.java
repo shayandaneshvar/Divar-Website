@@ -18,7 +18,6 @@ import java.util.Collections;
 @NoArgsConstructor
 public class UserPrincipal implements UserDetails {
     private User user;
-    private Boolean dick;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
