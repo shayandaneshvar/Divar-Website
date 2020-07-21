@@ -41,6 +41,7 @@ public class LoggingAspect {
             end = System.currentTimeMillis();
         } catch (Throwable t) {
             builder.append(" Error ");
+            LOGGER.info(builder.toString());
             throw new RuntimeException();
         }
         builder.append((end - start));

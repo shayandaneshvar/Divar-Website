@@ -1,8 +1,10 @@
 package ir.ac.kntu.divar.controller;
 
 import ir.ac.kntu.divar.exceptions.ComingSoonException;
+import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,13 +39,14 @@ public class MainController {
 
     @GetMapping("/login")
     public String showRegister(Model model) {
-        model.addAttribute("mobile", new String());
-        return "register";
+        model.addAttribute("user", new User());
+        return "login";
     }
 
-    @PostMapping("/login")
-    public String register(@ModelAttribute String mobile) {
-        userService.getUser(mobile);
+//    @Loggable
+    @PostMapping("/register")
+    public String register(@ModelAttribute User user) {
+        userService.getUser(user.getMobile());
         return "redirect:/";
     }
 }
