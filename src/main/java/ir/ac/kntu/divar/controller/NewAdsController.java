@@ -1,6 +1,7 @@
 package ir.ac.kntu.divar.controller;
 
 import ir.ac.kntu.divar.model.dto.NewVehicleDTO;
+import ir.ac.kntu.divar.model.dto.electronics.NewElectronicsDTO;
 import ir.ac.kntu.divar.model.dto.electronics.NewLaptopDTO;
 import ir.ac.kntu.divar.model.dto.electronics.NewMobileDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewCommercialSellDTO;
@@ -107,6 +108,40 @@ public class NewAdsController {
     public String newMobile(Model model) {
         model.addAttribute("rs", new NewMobileDTO());
         return "NewMobile";
+    }
+
+    @GetMapping("/pc")
+    public String newPC(Model model) {
+        model.addAttribute("rs", new NewElectronicsDTO());
+        model.addAttribute("address", "pc");
+        return "NewElectronic";
+    }
+
+    @GetMapping("/console")
+    public String newConsole(Model model) {
+        model.addAttribute("rs", new NewElectronicsDTO());
+        model.addAttribute("address", "console");
+        return "NewElectronic";
+    }
+
+    @PostMapping("/pc")
+    public String newPCSubmit(NewElectronicsDTO input,
+                              @RequestParam("uploadedImage")
+                                      MultipartFile file)
+            throws IOException {
+        String fileName = UploadUtil.handleUpload(file);
+        pcService.create(input, fileName);
+        return "redirect:/";
+    }
+
+    @PostMapping("/console")
+    public String newConsoleSubmit(NewElectronicsDTO input,
+                                   @RequestParam("uploadedImage")
+                                           MultipartFile file)
+            throws IOException {
+        String fileName = UploadUtil.handleUpload(file);
+        consoleService.create(input, fileName);
+        return "redirect:/";
     }
 
     @PostMapping("/mobile")
