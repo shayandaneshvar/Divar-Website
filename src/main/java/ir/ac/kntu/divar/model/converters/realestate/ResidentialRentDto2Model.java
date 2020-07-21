@@ -1,6 +1,6 @@
-package ir.ac.kntu.divar.model.converters;
+package ir.ac.kntu.divar.model.converters.realestate;
 
-import ir.ac.kntu.divar.model.dto.NewResidentialRentDTO;
+import ir.ac.kntu.divar.model.dto.realestate.NewResidentialRentDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.RealEstateAdvertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialRent;

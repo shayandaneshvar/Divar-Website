@@ -1,4 +1,4 @@
-package ir.ac.kntu.divar.model.dto;
+package ir.ac.kntu.divar.model.dto.realestate;
 
 import lombok.*;
 

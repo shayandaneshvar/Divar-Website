@@ -4,12 +4,14 @@ import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Data
 @NoArgsConstructor
+@Accessors(chain = true)
 @Table(name = "VEHICLE")
 @Entity(name = "Vehicle")
 @Inheritance(strategy = InheritanceType.JOINED)

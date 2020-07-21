@@ -1,6 +1,6 @@
 package ir.ac.kntu.divar.controller;
 
-import ir.ac.kntu.divar.model.dto.GeneralFilterDTO;
+import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.service.advertisement.electronics.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

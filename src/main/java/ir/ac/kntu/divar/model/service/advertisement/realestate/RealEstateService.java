@@ -1,6 +1,6 @@
 package ir.ac.kntu.divar.model.service.advertisement.realestate;
 
-import ir.ac.kntu.divar.model.dto.RealEstateFilterDTO;
+import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.RealEstateAdvertisement;
 import ir.ac.kntu.divar.model.entity.location.Zone;

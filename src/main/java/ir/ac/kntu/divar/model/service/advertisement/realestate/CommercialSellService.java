@@ -1,8 +1,8 @@
 package ir.ac.kntu.divar.model.service.advertisement.realestate;
 
-import ir.ac.kntu.divar.model.converters.CommercialSellDto2Model;
-import ir.ac.kntu.divar.model.dto.NewCommercialSellDTO;
-import ir.ac.kntu.divar.model.dto.RealEstateFilterDTO;
+import ir.ac.kntu.divar.model.converters.realestate.CommercialSellDto2Model;
+import ir.ac.kntu.divar.model.dto.realestate.NewCommercialSellDTO;
+import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.CommercialSell;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
 import ir.ac.kntu.divar.model.entity.location.City;

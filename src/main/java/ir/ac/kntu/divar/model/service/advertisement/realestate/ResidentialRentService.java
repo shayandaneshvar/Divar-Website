@@ -1,10 +1,9 @@
 package ir.ac.kntu.divar.model.service.advertisement.realestate;
 
-import ir.ac.kntu.divar.model.converters.ResidentialRentDto2Model;
-import ir.ac.kntu.divar.model.dto.NewResidentialRentDTO;
-import ir.ac.kntu.divar.model.dto.RealEstateFilterDTO;
+import ir.ac.kntu.divar.model.converters.realestate.ResidentialRentDto2Model;
+import ir.ac.kntu.divar.model.dto.realestate.NewResidentialRentDTO;
+import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialRent;
-import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;

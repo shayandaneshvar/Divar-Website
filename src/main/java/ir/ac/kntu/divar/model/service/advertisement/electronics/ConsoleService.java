@@ -1,6 +1,6 @@
 package ir.ac.kntu.divar.model.service.advertisement.electronics;
 
-import ir.ac.kntu.divar.model.dto.GeneralFilterDTO;
+import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.electronics.Console;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;

@@ -1,6 +1,6 @@
 package ir.ac.kntu.divar.controller;
 
-import ir.ac.kntu.divar.model.dto.GeneralFilterDTO;
+import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.service.advertisement.vehicle.CarService;
 import ir.ac.kntu.divar.model.service.advertisement.vehicle.TruckService;
 import ir.ac.kntu.divar.model.service.advertisement.vehicle.VehicleService;

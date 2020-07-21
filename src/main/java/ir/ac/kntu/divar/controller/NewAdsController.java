@@ -1,11 +1,14 @@
 package ir.ac.kntu.divar.controller;
 
-import ir.ac.kntu.divar.model.dto.NewCommercialSellDTO;
-import ir.ac.kntu.divar.model.dto.NewResidentialRentDTO;
-import ir.ac.kntu.divar.model.dto.NewResidentialSellDTO;
+import ir.ac.kntu.divar.model.dto.NewVehicleDTO;
+import ir.ac.kntu.divar.model.dto.realestate.NewCommercialSellDTO;
+import ir.ac.kntu.divar.model.dto.realestate.NewResidentialRentDTO;
+import ir.ac.kntu.divar.model.dto.realestate.NewResidentialSellDTO;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.CommercialSellService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.ResidentialRentService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.ResidentialSellService;
+import ir.ac.kntu.divar.model.service.advertisement.vehicle.CarService;
+import ir.ac.kntu.divar.model.service.advertisement.vehicle.TruckService;
 import ir.ac.kntu.divar.util.UploadUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,8 @@ public class NewAdsController {
     private final ResidentialSellService residentialSellService;
     private final ResidentialRentService residentialRentService;
     private final CommercialSellService commercialSellService;
+    private final CarService carService;
+    private final TruckService truckService;
 
     @GetMapping()
     public String getNewAdvertisement() {
@@ -48,6 +53,38 @@ public class NewAdsController {
     public String newCommercialSellSubmit(Model model) {
         model.addAttribute("rs", new NewCommercialSellDTO());
         return "NewBuyCommercial";
+    }
+
+    @GetMapping("/car")
+    public String newCar(Model model) {
+        model.addAttribute("rs", new NewVehicleDTO());
+        model.addAttribute("address", "car");
+        return "NewVehicle";
+    }
+
+    @PostMapping("/car")
+    public String newCarSubmit(NewVehicleDTO input,
+                               @RequestParam("uploadedImage")
+                                       MultipartFile file) throws IOException {
+        String fileName = UploadUtil.handleUpload(file);
+        carService.create(input, fileName);
+        return "redirect:/";
+    }
+
+    @PostMapping("/truck")
+    public String newTruckSubmit(NewVehicleDTO input,
+                                 @RequestParam("uploadedImage")
+                                         MultipartFile file) throws IOException {
+        String fileName = UploadUtil.handleUpload(file);
+        truckService.create(input, fileName);
+        return "redirect:/";
+    }
+
+    @GetMapping("/truck")
+    public String newTruck(Model model) {
+        model.addAttribute("rs", new NewVehicleDTO());
+        model.addAttribute("address", "truck");
+        return "NewVehicle";
     }
 
     @PostMapping("/buy-commercial")

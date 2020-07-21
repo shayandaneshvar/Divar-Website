@@ -1,6 +1,6 @@
 package ir.ac.kntu.divar.model.service.advertisement.electronics;
 
-import ir.ac.kntu.divar.model.dto.GeneralFilterDTO;
+import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.electronics.ElectronicsAdvertisement;
 import lombok.RequiredArgsConstructor;
