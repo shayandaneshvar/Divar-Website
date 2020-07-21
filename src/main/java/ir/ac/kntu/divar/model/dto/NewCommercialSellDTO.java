@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NewCommercialSellDTO {
-    private String city, zone, title, description, mobile,advertiser;
+    private String city, zone, title, hasDocument, description, mobile,
+            advertiser;
     private Integer rooms, area, price;
-    private Boolean hasDocument;
 }

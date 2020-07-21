@@ -44,13 +44,13 @@ public class NewAdsController {
         return "NewBuyCommercial";
     }
 
-    @PostMapping("/buy-commercial")
+    @GetMapping("/buy-commercial")
     public String newCommercialSellSubmit(Model model) {
         model.addAttribute("rs", new NewCommercialSellDTO());
         return "NewBuyCommercial";
     }
 
-    @GetMapping("/buy-commercial")
+    @PostMapping("/buy-commercial")
     public String newCommercialSell(NewCommercialSellDTO input,
                                     @RequestParam("uploadedImage")
                                             MultipartFile file)
