@@ -1,5 +1,6 @@
 package ir.ac.kntu.divar.controller;
 
+import ir.ac.kntu.divar.exceptions.ComingSoonException;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,8 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping(value = "/support")
+    public String getSupport() {
+        throw new ComingSoonException();
+    }
 }
