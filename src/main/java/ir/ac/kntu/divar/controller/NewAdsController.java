@@ -1,5 +1,6 @@
 package ir.ac.kntu.divar.controller;
 
+import ir.ac.kntu.divar.model.dto.NewCommercialSellDTO;
 import ir.ac.kntu.divar.model.dto.NewResidentialRentDTO;
 import ir.ac.kntu.divar.model.dto.NewResidentialSellDTO;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.CommercialSellService;
@@ -40,7 +41,23 @@ public class NewAdsController {
     @GetMapping("/rent-residential")
     public String newResidentialRent(Model model) {
         model.addAttribute("rs", new NewResidentialRentDTO());
-        return "NewRentResidential";
+        return "NewBuyCommercial";
+    }
+
+    @PostMapping("/buy-commercial")
+    public String newCommercialSellSubmit(Model model) {
+        model.addAttribute("rs", new NewCommercialSellDTO());
+        return "NewBuyCommercial";
+    }
+
+    @GetMapping("/buy-commercial")
+    public String newCommercialSell(NewCommercialSellDTO input,
+                                    @RequestParam("uploadedImage")
+                                            MultipartFile file)
+            throws IOException {
+        String fileName = UploadUtil.handleUpload(file);
+        commercialSellService.create(input, fileName);
+        return "redirect:/";
     }
 
     @PostMapping("/rent-residential")
