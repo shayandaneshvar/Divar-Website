@@ -26,4 +26,9 @@ public class MainController {
     public String getSupport() {
         throw new ComingSoonException();
     }
+
+    @GetMapping(value = "/contact")
+    public String contactUs() {
+        return "contact";
+    }
 }
