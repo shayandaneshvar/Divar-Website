@@ -39,7 +39,8 @@
 
 
 <div id="app">
-    <nav class="ui secondary top fixed navbar menu" style="background-color:#222831!important;">
+    <nav class="ui secondary top fixed navbar menu"
+         style="background-color:#222831!important;">
         <a target="_self" class="" href="/">
             <img src="../static/images/icons8-brick-wall-641.png" alt=""
                  th:src="@{/images/icons8-brick-wall-641.png}" style="transform:
@@ -49,7 +50,8 @@
 
         <div class="menu links">
             <a class="item link myLink" href="/my-divar/my-posts">دیوار
-                من</a><a href="/" th:href="@{/support}" class="item link myLink">پشتیبانی
+                من</a><a href="/" th:href="@{/support}"
+                         class="item link myLink">پشتیبانی
         </a><a class="item link myLink" href="/contact">تماس با ما</a>
             <div class="item newButton"><a
                     class="ui button buttons buttons--red divari-colored myBtn"
@@ -67,7 +69,8 @@
                              style="background-color: #282f44;">
                             <div class="dim json-schema-form-dim">
                                 <div class="json-schema-form">
-                                    <form class="json-schema-form__form" th:object="${rs}"
+                                    <form class="json-schema-form__form"
+                                          th:object="${rs}"
                                           method="post"
                                           th:href="@{/new/rent-residential}"
                                           href="/new/rent-residential"
@@ -86,20 +89,22 @@
                                                                                      style="color: #ececec;">
                                                                                     شهر
                                                                                 </div>
-                                                                              <label>
-                                                                                <input type="text" th:field="*{city}"
-                                                                                       class="ui search selection dropdown dropdowns">
-                                                                              </label>
+                                                                                <label>
+                                                                                    <input type="text"
+                                                                                           th:field="*{city}"
+                                                                                           class="ui search selection dropdown dropdowns">
+                                                                                </label>
                                                                             </div>
                                                                             <div class="location-selector__district">
                                                                                 <div class="text-field"
                                                                                      style="color: #ececec;">
                                                                                     محله
                                                                                 </div>
-                                                                              <label>
-                                                                                <input type="text" th:field="*{zone}"
-                                                                                       class="ui search selection dropdown dropdowns">
-                                                                              </label>
+                                                                                <label>
+                                                                                    <input type="text"
+                                                                                           th:field="*{zone}"
+                                                                                           class="ui search selection dropdown dropdowns">
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -120,6 +125,7 @@
                                                                                 <picture>
                                                                                     <img alt="عکس پیدا نشد"
                                                                                          src="/pictures/sada.jpg"
+                                                                                         th:src="@{/pictures/default.png}"
                                                                                          class="post-card-image">
                                                                                 </picture>
 
@@ -140,11 +146,12 @@
                                                                      style="color: #ececec;">
                                                                     متراژ
                                                                 </div>
-                                                              <label>
-                                                                <input
-                                                                        type="text" th:field="*{area}"
-                                                                       class="ui search selection dropdown dropdowns">
-                                                              </label>
+                                                                <label>
+                                                                    <input
+                                                                            type="text"
+                                                                            th:field="*{area}"
+                                                                            class="ui search selection dropdown dropdowns">
+                                                                </label>
                                                             </div>
                                                         </div>
                                                         <div class="field-template">
@@ -158,14 +165,16 @@
                                                                          id="root_user_type">
                                                                         <div class="radio ">
                                                                             <label><span>
-                                                                              <input type="radio" th:field="*{advertiser}"
-                                                                                    name="0.5807807417788717"
-                                                                                    required=""
-                                                                                    value="شخصی"><span
+                                                                              <input type="radio"
+                                                                                     th:field="*{advertiser}"
+                                                                                     name="0.5807807417788717"
+                                                                                     required=""
+                                                                                     value="شخصی"><span
                                                                                     style="color: #f5d061;">شخصی</span></span></label>
                                                                         </div>
                                                                         <div class="radio ">
-                                                                            <label><span><input th:field="*{advertiser}"
+                                                                            <label><span><input
+                                                                                    th:field="*{advertiser}"
                                                                                     type="radio"
                                                                                     name="0.5807807417788717"
                                                                                     required=""
@@ -182,12 +191,12 @@
                                                                      style="color: #ececec;">
                                                                     رهن
                                                                 </div>
-                                                              <label>
-                                                                <input
-                                                                        th:field="*{price}"
-                                                                        type="number"
-                                                                       class="ui search selection dropdown dropdowns">
-                                                              </label>
+                                                                <label>
+                                                                    <input
+                                                                            th:field="*{prepayment}"
+                                                                            type="number"
+                                                                            class="ui search selection dropdown dropdowns">
+                                                                </label>
                                                             </div>
                                                         </div>
                                                         <div class="field-template">
@@ -196,12 +205,12 @@
                                                                      style="color: #ececec;">
                                                                     اجاره
                                                                 </div>
-                                                              <label>
-                                                                <input
-                                                                        th:field="*{price}"
-                                                                        type="number"
-                                                                       class="ui search selection dropdown dropdowns">
-                                                              </label>
+                                                                <label>
+                                                                    <input
+                                                                            th:field="*{rent}"
+                                                                            type="number"
+                                                                            class="ui search selection dropdown dropdowns">
+                                                                </label>
                                                             </div>
                                                         </div>
                                                         <div class="field-template">
@@ -210,11 +219,12 @@
                                                                      style="color: #ececec;">
                                                                     تعداد اتاق
                                                                 </div>
-                                                              <label>
-                                                                <input
-                                                                        type="number" th:field="*{rooms}"
-                                                                       class="ui search selection dropdown dropdowns">
-                                                              </label>
+                                                                <label>
+                                                                    <input
+                                                                            type="number"
+                                                                            th:field="*{rooms}"
+                                                                            class="ui search selection dropdown dropdowns">
+                                                                </label>
                                                             </div>
                                                         </div>
                                                         <div class="field-template">
@@ -238,14 +248,14 @@
                                                                                     <div class="text-input">
                                                                                         <div class="required field text-input__field json-schema-form__text-input">
                                                                                             <div class="ui input">
-                                                                                              <label>
-                                                                                                <input th:field="*{mobile}"
-                                                                                                        placeholder="شماره موبایل شما (**** *** 0911)"
-                                                                                                       required=""
-                                                                                                       type="text"
-                                                                                                       value=""
-                                                                                                       pattern="09[0-9]{9}">
-                                                                                              </label>
+                                                                                                <label>
+                                                                                                    <input th:field="*{mobile}"
+                                                                                                           placeholder="شماره موبایل شما (**** *** 0911)"
+                                                                                                           required=""
+                                                                                                           type="text"
+                                                                                                           value=""
+                                                                                                           pattern="09[0-9]{9}">
+                                                                                                </label>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -266,12 +276,12 @@
                                                                     <div class="text-input">
                                                                         <div class="required field text-input__field json-schema-form__text-input">
                                                                             <div class="ui input">
-                                                                              <label>
-                                                                                <input th:field="*{title}"
-                                                                                       required
-                                                                                       type="text"
-                                                                                       value="">
-                                                                              </label>
+                                                                                <label>
+                                                                                    <input th:field="*{title}"
+                                                                                           required
+                                                                                           type="text"
+                                                                                           value="">
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -287,7 +297,8 @@
                                                                 <div class="field-template__children">
                                                                     <div class="text-input">
                                                                         <div class="required field text-input__field json-schema-form__text-input">
-                                                                            <textarea th:field="*{description}"
+                                                                            <textarea
+                                                                                    th:field="*{description}"
                                                                                     placeholder="توضیحات را بنویسید."
                                                                                     required=""
                                                                                     type="text"
