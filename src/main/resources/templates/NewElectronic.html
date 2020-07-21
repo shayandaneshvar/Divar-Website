@@ -72,8 +72,8 @@
                                 <div class="json-schema-form">
                                     <form class="json-schema-form__form" th:object="${rs}"
                                           method="post"
-                                          th:href="@{/new/buy-residential}"
-                                          href="/new/buy-residential"
+                                          th:href="@{/new/{e}(e=${address})}"
+                                          href="/new/laptop"
                                           enctype="multipart/form-data">
                                         <div class="field-template">
                                             <div class="field">
@@ -138,49 +138,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="field-template">
-                                                            <div class="field">
-                                                                <div class="text-field"
-                                                                     style="color: #ececec;">
-                                                                    متراژ
-                                                                </div>
-                                                              <label>
-                                                                <input
-                                                                        type="text" th:field="*{area}"
-                                                                       class="ui search selection dropdown dropdowns">
-                                                              </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-template">
-                                                            <div class="field">
-                                                                <div class="text-field"
-                                                                     style="color: #ececec;">
-                                                                    آگهی&zwnj;دهنده
-                                                                </div>
-                                                                <div class="field-template__children">
-                                                                    <div class="field-radio-group"
-                                                                         id="root_user_type">
-                                                                        <div class="radio ">
-                                                                            <label><span>
-                                                                              <input type="radio" th:field="*{advertiser}"
-                                                                                    name="0.5807807417788717"
-                                                                                    required=""
-                                                                                    value="شخصی"><span
-                                                                                    style="color: #f5d061;">شخصی</span></span></label>
-                                                                        </div>
-                                                                        <div class="radio ">
-                                                                            <label><span><input th:field="*{advertiser}"
-                                                                                    type="radio"
-                                                                                    name="0.5807807417788717"
-                                                                                    required=""
-                                                                                    value="مشاور املاک"><span
-                                                                                    style="color: #f5d061;">مشاور املاک</span></span></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-template">
+                                                  <div class="field-template">
                                                             <div class="field">
                                                                 <div class="text-field"
                                                                      style="color: #ececec;">
@@ -190,19 +148,6 @@
                                                                 <input
                                                                         th:field="*{price}"
                                                                         type="number"
-                                                                       class="ui search selection dropdown dropdowns">
-                                                              </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-template">
-                                                            <div class="field">
-                                                                <div class="text-field"
-                                                                     style="color: #ececec;">
-                                                                    تعداد اتاق
-                                                                </div>
-                                                              <label>
-                                                                <input
-                                                                        type="number" th:field="*{rooms}"
                                                                        class="ui search selection dropdown dropdowns">
                                                               </label>
                                                             </div>

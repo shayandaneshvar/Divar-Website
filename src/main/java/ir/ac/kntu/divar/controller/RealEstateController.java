@@ -1,6 +1,6 @@
 package ir.ac.kntu.divar.controller;
 
-import ir.ac.kntu.divar.model.dto.RealEstateFilterDTO;
+import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.CommercialSellService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.RealEstateService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.ResidentialRentService;

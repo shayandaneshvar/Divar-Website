@@ -72,7 +72,7 @@
                                 <div class="json-schema-form">
                                     <form class="json-schema-form__form" th:object="${rs}"
                                           method="post"
-                                          th:href="@{/new/buy-residential}"
+                                          th:href="@{/new/{v}(v=${address})}"
                                           href="/new/buy-residential"
                                           enctype="multipart/form-data">
                                         <div class="field-template">
@@ -142,44 +142,45 @@
                                                             <div class="field">
                                                                 <div class="text-field"
                                                                      style="color: #ececec;">
-                                                                    متراژ
-                                                                </div>
-                                                              <label>
-                                                                <input
-                                                                        type="text" th:field="*{area}"
-                                                                       class="ui search selection dropdown dropdowns">
-                                                              </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-template">
-                                                            <div class="field">
-                                                                <div class="text-field"
-                                                                     style="color: #ececec;">
-                                                                    آگهی&zwnj;دهنده
+                                                                    نوع آگهی
                                                                 </div>
                                                                 <div class="field-template__children">
                                                                     <div class="field-radio-group"
                                                                          id="root_user_type">
                                                                         <div class="radio ">
                                                                             <label><span>
-                                                                              <input type="radio" th:field="*{advertiser}"
+                                                                              <input type="radio" th:field="*{forRent}"
                                                                                     name="0.5807807417788717"
                                                                                     required=""
-                                                                                    value="شخصی"><span
-                                                                                    style="color: #f5d061;">شخصی</span></span></label>
+                                                                                    value="فروشی"><span
+                                                                                    style="color: #f5d061;">فروشی</span></span></label>
                                                                         </div>
                                                                         <div class="radio ">
-                                                                            <label><span><input th:field="*{advertiser}"
+                                                                            <label><span><input th:field="*{forRent}"
                                                                                     type="radio"
                                                                                     name="0.5807807417788717"
                                                                                     required=""
-                                                                                    value="مشاور املاک"><span
-                                                                                    style="color: #f5d061;">مشاور املاک</span></span></label>
+                                                                                    value="اجاره ای"><span
+                                                                                    style="color: #f5d061;">اجاره ای</span></span></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="text-field"
+                                                                     style="color: #ececec;">
+                                                                    مدل
+                                                                </div>
+                                                              <label>
+                                                                <input
+                                                                        type="text" th:field="*{model}"
+                                                                       class="ui search selection dropdown dropdowns">
+                                                              </label>
+                                                            </div>
+                                                        </div>
+                                                        
                                                         <div class="field-template">
                                                             <div class="field">
                                                                 <div class="text-field"
@@ -198,11 +199,24 @@
                                                             <div class="field">
                                                                 <div class="text-field"
                                                                      style="color: #ececec;">
-                                                                    تعداد اتاق
+                                                                    سال ساخت
                                                                 </div>
                                                               <label>
                                                                 <input
-                                                                        type="number" th:field="*{rooms}"
+                                                                        type="number" th:field="*{productionYear}"
+                                                                       class="ui search selection dropdown dropdowns">
+                                                              </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field-template">
+                                                            <div class="field">
+                                                                <div class="text-field"
+                                                                     style="color: #ececec;">
+                                                                    میزان کارکرد
+                                                                </div>
+                                                              <label>
+                                                                <input
+                                                                        type="number" th:field="*{kilometerage}"
                                                                        class="ui search selection dropdown dropdowns">
                                                               </label>
                                                             </div>

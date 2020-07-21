@@ -1,6 +1,6 @@
-package ir.ac.kntu.divar.model.converters;
+package ir.ac.kntu.divar.model.converters.realestate;
 
-import ir.ac.kntu.divar.model.dto.NewResidentialSellDTO;
+import ir.ac.kntu.divar.model.dto.realestate.NewResidentialSellDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.RealEstateAdvertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
@@ -21,6 +21,7 @@ public class ResidentialSellDto2Model implements Converter<NewResidentialSellDTO
                 .setArea(Double.valueOf(src.getArea()))
                 .setRooms(src.getRooms()).setTitle(src.getTitle())
                 .setDescription(src.getDescription())
+                .setTitle(src.getTitle())
                 .setMobile(src.getMobile());
         return (ResidentialSell) out;
     }

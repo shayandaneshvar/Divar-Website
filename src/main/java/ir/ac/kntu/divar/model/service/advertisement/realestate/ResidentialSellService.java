@@ -1,8 +1,8 @@
 package ir.ac.kntu.divar.model.service.advertisement.realestate;
 
-import ir.ac.kntu.divar.model.converters.ResidentialSellDto2Model;
-import ir.ac.kntu.divar.model.dto.NewResidentialSellDTO;
-import ir.ac.kntu.divar.model.dto.RealEstateFilterDTO;
+import ir.ac.kntu.divar.model.converters.realestate.ResidentialSellDto2Model;
+import ir.ac.kntu.divar.model.dto.realestate.NewResidentialSellDTO;
+import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
@@ -47,10 +47,11 @@ public class ResidentialSellService {
     public ResidentialSell create(NewResidentialSellDTO input, String fileName) {
         ResidentialSell res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {
-            res.setHasImage(false);
+            res.setHasImage(true);
             res.setPicture(fileName);
+        } else {
+            res.setHasImage(false);
         }
-        res.setHasImage(true);
         City city = locationService.getCity(input.getCity())
                 .orElseGet(() -> locationService.saveCity(input.getCity()));
         res.setCity(city);
