@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html html lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org">
+<html lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
@@ -9,18 +9,30 @@
           href="../static/images/icons8-brick-wall-64.png" 
           th:href="@{/images/icons8-brick-wall-64.png}">
 	<title>بروز رسانی سایت </title>
-	<link rel="stylesheet" type="text/css" href="../static/comingsoon/css/bootstrap-rtl.min.css">
-	<link rel="stylesheet" type="text/css" href="../static/comingsoon/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="../static/comingsoon/css/animate.css">
-	<link rel="stylesheet" type="text/css" href="../static/comingsoon/css/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="../static/comingsoon/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../static/comingsoon/css/style.css">
+	<link rel="stylesheet" type="text/css"
+		  href="../static/comingsoon/css/bootstrap-rtl.min.css"
+		  th:href="@{/comingsoon/css/bootstrap-rtl.min.css}">
+	<link rel="stylesheet" type="text/css"
+		  href="../static/comingsoon/css/font-awesome.min.css"
+		  th:href="@{/comingsoon/css/font-awesome.min.css}">
+	<link rel="stylesheet" type="text/css"
+		  href="../static/comingsoon/css/animate.css"
+		  th:href="@{/comingsoon/css/animate.css}">
+	<link rel="stylesheet" type="text/css"
+		  href="../static/comingsoon/css/select2.min.css"
+		  th:href="@{/comingsoon/css/select2.min.css}">
+	<link rel="stylesheet" type="text/css"
+		  href="../static/comingsoon/css/util.css"
+		  th:href="@{/comingsoon/css/util.css}">
+	<link rel="stylesheet" type="text/css"
+		  href="../static/comingsoon/css/style.css"
+		  th:href="@{/comingsoon/css/style.css}">
 </head>
 <body dir="rtl">
 	<div class="simpleslide100">
-		<div class="simpleslide100-item bg-img1" style="background-image: url('../static/pictures/house.jpg');"></div>
-		<div class="simpleslide100-item bg-img1" style="background-image: url('../static/pictures/car.jpg');"></div>
-		<div class="simpleslide100-item bg-img1" style="background-image: url('../static/pictures/electronic.jpeg');"></div>
+		<div class="simpleslide100-item bg-img1" style="background-image: url('/pictures/house.jpg');"></div>
+		<div class="simpleslide100-item bg-img1" style="background-image: url('/pictures/car.jpg');"></div>
+		<div class="simpleslide100-item bg-img1" style="background-image: url('/pictures/electronic.jpeg');"></div>
 	</div>
 	<div class="size1 overlay1">
 		<div class="size1 flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-50">
@@ -29,7 +41,7 @@
 			</h3>
 
 			<p class="m2-txt1 txt-center p-b-48">
-				در حال بروزرسانی سایت هستیم...
+				در حال بروزرسانی این بخش از سایت هستیم...
 			</p>
 
 			<div class="flex-w flex-c-m cd100 p-b-33">
@@ -58,14 +70,15 @@
 	</div>
 
 	<!-- Start Scripts -->
-	<script src="../static/comingsoon/js/jquery-3.2.1.min.js"></script>
-	<script src="../static/comingsoon/js/popper.min.js"></script>
-	<script src="../static/comingsoon/js/bootstrap.min.js"></script>
-	<script src="../static/comingsoon/js/select2.min.js"></script>
-	<script src="../static/comingsoon/js/moment.min.js"></script>
-	<script src="../static/comingsoon/js/moment-timezone.min.js"></script>
-	<script src="../static/comingsoon/js/moment-timezone-with-data.min.js"></script>
-	<script src="../static/comingsoon/js/countdowntime.js"></script>
+	<script src="../static/comingsoon/js/jquery-3.2.1.min.js" th:src="@{/comingsoon/js/jquery-3.2.1.min.js}"></script>
+	<script src="../static/comingsoon/js/popper.min.js" th:src="@{/comingsoon/js/popper.min.js}"></script>
+	<script src="../static/comingsoon/js/bootstrap.min.js" th:src="@{/comingsoon/js/bootstrap.min.js}"></script>
+	<script src="../static/comingsoon/js/select2.min.js" th:src="@{/comingsoon/js/select2.min.js}"></script>
+	<script src="../static/comingsoon/js/moment.min.js" th:src="@{/comingsoon/js/moment.min.js}"></script>
+	<script src="../static/comingsoon/js/moment-timezone.min.js" th:src="@{/comingsoon/js/moment-timezone.min.js}"></script>
+	<script src="../static/comingsoon/js/moment-timezone-with-data.min.js" th:src="@{/comingsoon/js/moment-timezone-with-data.min.js}"
+	></script>
+	<script src="../static/comingsoon/js/countdowntime.js" th:src="@{/comingsoon/js/countdowntime.js}"></script>
 	<script>
 		$('.cd100').countdown100({
 			/*Set Endtime here*/
@@ -82,13 +95,13 @@
 		});
 	</script>
 	<!--===============================================================================================-->
-	<script src="../static/comingsoon/js/tilt.jquery.min.js"></script>
+	<script src="../static/comingsoon/js/tilt.jquery.min.js" th:src="@{/comingsoon/js/tilt.jquery.min.js}"></script>
 	<script >
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
 	</script>
 	<!--===============================================================================================-->
-	<script src="../static/comingsoon/js/scripts.js"></script>
+	<script src="../static/comingsoon/js/scripts.js" th:src="@{/comingsoon/js/scripts.js}"></script>
 </body><!-- This template has been downloaded from Webrubik.com -->
 </html>
