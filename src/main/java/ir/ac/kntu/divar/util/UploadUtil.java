@@ -15,7 +15,8 @@ public class UploadUtil {
 
     public static String handleUpload(MultipartFile file) throws IOException {
         String fileName = null;
-        if (file != null) {
+        if (file != null && !file.isEmpty() && file.getSize() > 0 &&
+                file.getName().length() > 0) {
             fileName = "/" + (int) Math.abs(Math.random() * 10000000) +
                     file.getOriginalFilename();
             Path path = Paths.get(UPLOAD_DIRECTORY, fileName);

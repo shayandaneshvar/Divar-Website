@@ -48,10 +48,11 @@ public class ResidentialRentService {
     public ResidentialRent create(NewResidentialRentDTO input, String fileName) {
         ResidentialRent res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {
-            res.setHasImage(false);
+            res.setHasImage(true);
             res.setPicture(fileName);
+        } else {
+            res.setHasImage(false);
         }
-        res.setHasImage(true);
         City city = locationService.getCity(input.getCity())
                 .orElseGet(() -> locationService.saveCity(input.getCity()));
         res.setCity(city);
