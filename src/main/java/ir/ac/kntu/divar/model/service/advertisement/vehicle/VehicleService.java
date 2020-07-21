@@ -1,19 +1,23 @@
 package ir.ac.kntu.divar.model.service.advertisement.vehicle;
 
+import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.vehicle.VehicleAdvertisement;
+import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class VehicleService {
+public class VehicleService implements Handler {
     private final CarService carService;
     private final TruckService truckService;
 
@@ -78,5 +82,19 @@ public class VehicleService {
                 new ArrayList<>(truckService.filter(input, dto));
         list.addAll(carService.filter(input, dto));
         return list;
+    }
+
+    @Override
+    public AdvertisementDTO apply(Long aLong) {
+        List<Handler> handlers = Arrays.asList(carService, truckService);
+        return handlers.stream().map(z -> {
+            AdvertisementDTO res;
+            try {
+                res = z.apply(aLong);
+            } catch (Exception ignored) {
+                res = null;
+            }
+            return res;
+        }).filter(Objects::nonNull).findFirst().orElse(null);
     }
 }

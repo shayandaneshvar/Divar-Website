@@ -1,6 +1,8 @@
 package ir.ac.kntu.divar.model.service.advertisement.vehicle;
 
+import ir.ac.kntu.divar.model.converters.vehicle.Vehicle2AdDto;
 import ir.ac.kntu.divar.model.converters.vehicle.VehicleDto2Car;
+import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.NewVehicleDTO;
 import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Car;
@@ -9,6 +11,7 @@ import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.repo.advertisement.vehicle.CarRepository;
 import ir.ac.kntu.divar.model.service.UserService;
+import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +22,12 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class CarService {
+public class CarService implements Handler {
     private final LocationService locationService;
     private final CarRepository repository;
     private final UserService userService;
     private final VehicleDto2Car converter;
+    private final Vehicle2AdDto<Car> mapper;
 
     public List<Car> getAll() {
         return repository.findAll();
@@ -64,5 +68,10 @@ public class CarService {
         user.getDivar().getUserAdvertisements().add(res);
         userService.saveUser(user);
         return res;
+    }
+
+    @Override
+    public AdvertisementDTO apply(Long aLong) {
+        return mapper.convert(repository.getOne(aLong));
     }
 }

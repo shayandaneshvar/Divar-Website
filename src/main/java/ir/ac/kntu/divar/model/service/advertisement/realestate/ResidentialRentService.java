@@ -1,14 +1,17 @@
 package ir.ac.kntu.divar.model.service.advertisement.realestate;
 
+import ir.ac.kntu.divar.model.converters.realestate.ResidentialRent2AdDto;
 import ir.ac.kntu.divar.model.converters.realestate.ResidentialRentDto2Model;
-import ir.ac.kntu.divar.model.dto.realestate.NewResidentialRentDTO;
+import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
+import ir.ac.kntu.divar.model.dto.realestate.NewResidentialRentDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialRent;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.repo.advertisement.realestate.ResidentialRentRepository;
 import ir.ac.kntu.divar.model.service.UserService;
+import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +22,13 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class ResidentialRentService {
+public class ResidentialRentService implements Handler {
     private final ResidentialRentRepository repository;
     private final LocationService locationService;
     private final UserService userService;
     private final ResidentialRentDto2Model converter;
+    private final ResidentialRent2AdDto mapper;
+
     public List<ResidentialRent> getAll() {
         return repository.findAll();
     }
@@ -66,5 +71,10 @@ public class ResidentialRentService {
         user.getDivar().getUserAdvertisements().add(res);
         userService.saveUser(user);
         return res;
+    }
+
+    @Override
+    public AdvertisementDTO apply(Long aLong) {
+        return mapper.convert(repository.getOne(aLong));
     }
 }

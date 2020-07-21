@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class Vehicle2AdDto<T extends VehicleAdvertisement> implements Converter<T,
-        AdvertisementDTO> {
+public class Vehicle2AdDto<T extends VehicleAdvertisement> implements
+        Converter<T, AdvertisementDTO> {
     @Override
     public AdvertisementDTO convert(T t) {
         if (t instanceof Car) {

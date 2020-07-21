@@ -1,8 +1,10 @@
 package ir.ac.kntu.divar.model.service.advertisement.realestate;
 
+import ir.ac.kntu.divar.model.converters.realestate.CommercialSell2AdDto;
 import ir.ac.kntu.divar.model.converters.realestate.CommercialSellDto2Model;
-import ir.ac.kntu.divar.model.dto.realestate.NewCommercialSellDTO;
+import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
+import ir.ac.kntu.divar.model.dto.realestate.NewCommercialSellDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.CommercialSell;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
 import ir.ac.kntu.divar.model.entity.location.City;
@@ -10,6 +12,7 @@ import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.repo.advertisement.realestate.CommercialSellRepository;
 import ir.ac.kntu.divar.model.service.UserService;
+import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +23,12 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class CommercialSellService {
+public class CommercialSellService implements Handler {
     private final CommercialSellRepository repository;
     private final LocationService locationService;
     private final CommercialSellDto2Model converter;
     private final UserService userService;
+    private final CommercialSell2AdDto mapper;
 
     public List<CommercialSell> getAll() {
         return repository.findAll();
@@ -66,5 +70,10 @@ public class CommercialSellService {
         user.getDivar().getUserAdvertisements().add(res);
         userService.saveUser(user);
         return res;
+    }
+
+    @Override
+    public AdvertisementDTO apply(Long aLong) {
+        return mapper.convert(repository.getOne(aLong));
     }
 }

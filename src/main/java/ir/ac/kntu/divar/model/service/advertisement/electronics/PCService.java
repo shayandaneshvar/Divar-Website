@@ -1,6 +1,8 @@
 package ir.ac.kntu.divar.model.service.advertisement.electronics;
 
+import ir.ac.kntu.divar.model.converters.electronics.Computer2AdDto;
 import ir.ac.kntu.divar.model.converters.electronics.ElectronicsDto2PC;
+import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.electronics.NewElectronicsDTO;
 import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.electronics.PC;
@@ -9,6 +11,7 @@ import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.repo.advertisement.electronics.PCRepository;
 import ir.ac.kntu.divar.model.service.UserService;
+import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +22,12 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class PCService {
+public class PCService implements Handler {
     private final LocationService locationService;
     private final PCRepository repository;
     private final UserService userService;
     private final ElectronicsDto2PC converter;
+    private final Computer2AdDto<PC> mapper;
 
     public List<PC> getAll() {
         return repository.findAll();
@@ -64,5 +68,10 @@ public class PCService {
         user.getDivar().getUserAdvertisements().add(res);
         userService.saveUser(user);
         return res;
+    }
+
+    @Override
+    public AdvertisementDTO apply(Long aLong) {
+        return mapper.convert(repository.getOne(aLong));
     }
 }

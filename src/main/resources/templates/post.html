@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>آگهی</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" sizes="64x64"
+          href="../static/images/icons8-brick-wall-64.png"
+          th:href="@{/images/icons8-brick-wall-64.png}">
+    <link rel="mask-icon"
+          href="https://s100.divarcdn.com/static/thewall-assets/safari-pinned-tab.svg"
+          color="#a62626">
+
+    <link data-chunk="main" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-1.369c89ae.css">
+    <link data-chunk="main" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-10.f61bd3cf.css">
+    <link data-chunk="Postshow" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-0.9730cb65.css">
+    <link data-chunk="Postshow" rel="stylesheet"
+          href="https://s100.divarcdn.com/statics/2020/07/chunk-9.0c3b3f04.css">
+    <style>
+        .myBtn {
+            background-color: #e6af2e !important;
+            border: 0 !important;
+        }
+
+        .myLink {
+            color: #ececec !important;
+        }
+
+        .myBtn:hover {
+            background-color: #f5d061 !important;
+        }
+
+        #post-fields-div span {
+          color: #ececec !important;
+        }
+    </style>
+</head>
+<body dir="rtl" data-gr-c-s-loaded="true" cz-shortcut-listen="true"
+      style="background-color: #282f44 !important;">
+
+
+<div id="app">
+    <nav class="ui secondary top fixed navbar menu" style="background-color:#222831!important;">
+        <a target="_self" class="" href="/">
+            <img src="../static/images/icons8-brick-wall-641.png" alt=""
+                 th:src="@{/images/icons8-brick-wall-641.png}" style="transform:
+             scale(0.85);border-radius: 8%;">
+        </a>
+
+
+        <div class="menu links">
+            <a class="item link myLink" href="/my-divar/my-posts">دیوار
+                من</a><a href="/" th:href="@{/support}" class="item link myLink">پشتیبانی
+        </a><a class="item link myLink" href="/contact">تماس با ما</a>
+            <div class="item newButton"><a
+                    class="ui button buttons buttons--red divari-colored myBtn"
+                    role="button" href="/new">ثبت آگهی</a></div>
+        </div>
+    </nav>
+      <div class="ui container" >
+        <div class="post-page" >
+          <div class="post-page__image">
+            <div >
+              <div class="image-slider">
+                <div dir="ltr">
+                  <div class="slick-slider image-slider slick-initialized" dir="ltr">
+                    <div class="slick-list">
+                      <div class="slick-track" style="width:700%;left:-100%">
+                        <div data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false" style="outline:none;width:14.285714285714286%">
+                          <div>
+                            <picture>
+                              <img src="../static/pictures/wall.jpg" alt="آگهی" tabindex="-1" style="width:100%;display:inline-block" class="image-slider"/>
+                            </picture>
+                          </div>
+                        </div>
+                        
+                         <div data-index="3" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width:14.285714285714286%">
+                          <div>
+                            <picture>
+                              <img src="../static/pictures/wall.jpg" alt="آگهی" tabindex="-1" style="width:100%;display:inline-block" class="image-slider"/>
+                            </picture>
+                          </div>
+                        </div>
+
+                        
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="post-page__info">
+          <div class="post-header">
+            <div class="post-header__title-wrapper">
+              <h1 class="post-header__title" style="color: #f5d061;">عنوان آگهی</h1>
+            </div>
+          </div>
+          <div class="post-actions">
+            <button class="ui button buttons buttons--red divari-colored myBtn" type="button" >نشان کردن</button>
+            <div class="post-actions__contact">
+              <button class="ui button buttons buttons--red divari-colored myBtn" type="button">برگشت به صفحه اصلی</button>
+            </div>
+          </div>
+          <div class="post-fields">
+            <div id="post-fields-div" style="color: #ececec;">
+              <div class="post-fields-item" >
+                <span class="post-fields-item__title">شماره تماس</span>
+                <div class="post-fields-item__value">09121221212
+                </div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">شهر</span>
+                تهران
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">محل</span>
+                بریانک
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">متراژ</span>
+                <div class="post-fields-item__value">۵۷ متر
+                </div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">تعداد اتاق</span>
+                <div class="post-fields-item__value">یک</div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">رهن</span>
+                <div class="post-fields-item__value">توافقی</div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">اجاره</span>
+                <div class="post-fields-item__value">توافقی</div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">قیمت کل</span>
+                <div class="post-fields-item__value">توافقی</div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">آگهی‌دهنده</span>
+                <div class="post-fields-item__value">مشاور املاک</div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">سند اداری</span>
+                <div class="post-fields-item__value">ندارد</div>
+              </div>
+             <div class="post-fields-item">
+                <span class="post-fields-item__title">برند</span>
+                <div class="post-fields-item__value">ایسوس
+                </div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">نوع</span>
+                <div class="post-fields-item__value">گوشی هوشمند / تبلت
+                </div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">میزان کارکرد</span>
+                <div class="post-fields-item__value">1000 کیلو متر</div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">مدل</span>
+                <div class="post-fields-item__value">سایپا</div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">سال ساخت
+                </span>
+                <div class="post-fields-item__value">۱۳۹۲</div>
+              </div>
+              <div class="post-fields-item">
+                <span class="post-fields-item__title">نوع آگهی</span>
+                <div class="post-fields-item__value">فروشی
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="color: #ececec;">
+            <div class="content">
+              <div class="post-page__description">
+                <h1>توضیحات</h1>
+                <p> هر چی  میخوایی بگو!!!</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class MainController {
     private final LocationService locationService;
-    private final UserService userService;
 
     @GetMapping(value = {"/", "index", "index.html"})
     public String getIndex(Model model) {
@@ -46,4 +45,5 @@ public class MainController {
     public User getUser() {
         return UserService.getCurrentLoggedOnUser();
     }
+
 }

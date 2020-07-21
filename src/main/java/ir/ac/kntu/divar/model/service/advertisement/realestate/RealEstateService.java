@@ -1,21 +1,25 @@
 package ir.ac.kntu.divar.model.service.advertisement.realestate;
 
+import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.RealEstateAdvertisement;
 import ir.ac.kntu.divar.model.entity.location.Zone;
+import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class RealEstateService {
+public class RealEstateService implements Handler {
     private final CommercialSellService commercialSellService;
     private final ResidentialRentService residentialRentService;
     private final ResidentialSellService residentialSellService;
@@ -65,9 +69,24 @@ public class RealEstateService {
 
     public List<? extends RealEstateAdvertisement> getAllByCity(String city) {
         List<RealEstateAdvertisement> result =
-                new ArrayList<>( commercialSellService.getAllByCity(city));
+                new ArrayList<>(commercialSellService.getAllByCity(city));
         result.addAll(residentialRentService.getAllByCity(city));
         result.addAll(residentialSellService.getAllByCity(city));
         return result;
+    }
+
+    @Override
+    public AdvertisementDTO apply(Long aLong) {
+        List<Handler> handlers = Arrays.asList(residentialRentService,
+                residentialSellService, commercialSellService);
+        return handlers.stream().map(z -> {
+            AdvertisementDTO res;
+            try {
+                res = z.apply(aLong);
+            } catch (Exception ignored) {
+                res = null;
+            }
+            return res;
+        }).filter(Objects::nonNull).findFirst().orElse(null);
     }
 }
