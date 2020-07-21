@@ -2,6 +2,7 @@ package ir.ac.kntu.divar.controller;
 
 import ir.ac.kntu.divar.model.dto.NewVehicleDTO;
 import ir.ac.kntu.divar.model.dto.electronics.NewLaptopDTO;
+import ir.ac.kntu.divar.model.dto.electronics.NewMobileDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewCommercialSellDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewResidentialRentDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewResidentialSellDTO;
@@ -100,6 +101,22 @@ public class NewAdsController {
     public String newLaptop(Model model) {
         model.addAttribute("rs", new NewLaptopDTO());
         return "NewLaptop";
+    }
+
+    @GetMapping("/mobile")
+    public String newMobile(Model model) {
+        model.addAttribute("rs", new NewMobileDTO());
+        return "NewMobile";
+    }
+
+    @PostMapping("/mobile")
+    public String newMobileSubmit(NewMobileDTO input,
+                                  @RequestParam("uploadedImage")
+                                          MultipartFile file)
+            throws IOException {
+        String fileName = UploadUtil.handleUpload(file);
+        mobileService.create(input, fileName);
+        return "redirect:/";
     }
 
     @PostMapping("/laptop")
