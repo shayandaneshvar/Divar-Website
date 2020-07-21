@@ -4,14 +4,12 @@ import ir.ac.kntu.divar.exceptions.ComingSoonException;
 import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.location.LocationService;
-import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.stream.Collectors;
 
@@ -20,6 +18,7 @@ import java.util.stream.Collectors;
 public class MainController {
     private final LocationService locationService;
     private final UserService userService;
+
     @GetMapping(value = {"/", "index", "index.html"})
     public String getIndex(Model model) {
         model.addAttribute("cities", locationService.getAllCities().stream()
@@ -38,15 +37,13 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String showRegister(Model model) {
-        model.addAttribute("user", new User());
+    public String showRegister() {
         return "login";
     }
 
-//    @Loggable
-    @PostMapping("/register")
-    public String register(@ModelAttribute User user) {
-        userService.getUser(user.getMobile());
-        return "redirect:/";
+    @ResponseBody
+    @GetMapping("/me")
+    public User getUser() {
+        return UserService.getCurrentLoggedOnUser();
     }
 }

@@ -1,5 +1,7 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" dir="rtl" lang="fa-IR">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      dir="rtl" lang="fa-IR">
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
@@ -17,7 +19,7 @@
     <link data-chunk="main" rel="stylesheet"
           href="https://s100.divarcdn.com/statics/2020/07/chunk-10.de2181b2.css">
 
-    <title data-react-helmet="true">ثبت نام / ورود</title>
+    <title>ثبت نام / ورود</title>
     <style>
         #submit:hover {
             background-image: linear-gradient(to left, #e6af2e, #282f44, #e6af2e);
@@ -37,11 +39,11 @@
         }
 
         .white {
-            color :#ececec !important;
+            color: #ececec !important;
         }
 
         .white-solid {
-            color :#ececec !important;
+            color: #ececec !important;
         }
 
         .white:hover {
@@ -49,8 +51,8 @@
         }
 
         .yellow {
-            border-color: #f5d061!important;
-            color: #f5d061!important;
+            border-color: #f5d061 !important;
+            color: #f5d061 !important;
         }
 
         .post-card:after {
@@ -66,16 +68,19 @@
         #myBtnIn:hover {
             background-color: #f5d061 !important;
         }
+
         /* @extend display-flex; */
         display-flex, .display-flex, .display-flex-center {
             display: flex;
-            display: -webkit-flex; }
+            display: -webkit-flex;
+        }
 
         /* @extend list-type-ulli; */
         list-type-ulli {
             list-style-type: none;
             margin: 0;
-            padding: 0; }
+            padding: 0;
+        }
 
         /* Montserrat-300 - latin */
         @font-face {
@@ -83,48 +88,64 @@
             font-style: normal;
             font-weight: 300;
             src: url("../fonts/montserrat/Montserrat-Light.ttf");
-            /* IE9 Compat Modes */ }
+            /* IE9 Compat Modes */
+        }
+
         @font-face {
             font-family: 'Montserrat';
             font-style: normal;
             font-weight: 400;
             src: url("../fonts/montserrat/Montserrat-Regular.ttf");
-            /* IE9 Compat Modes */ }
+            /* IE9 Compat Modes */
+        }
+
         @font-face {
             font-family: 'Montserrat';
             font-style: italic;
             font-weight: 400;
             src: url("../fonts/montserrat/Montserrat-Italic.ttf");
-            /* IE9 Compat Modes */ }
+            /* IE9 Compat Modes */
+        }
+
         @font-face {
             font-family: 'Montserrat';
             font-style: normal;
             font-weight: 500;
             src: url("../fonts/montserrat/Montserrat-Medium.ttf");
-            /* IE9 Compat Modes */ }
+            /* IE9 Compat Modes */
+        }
+
         @font-face {
             font-family: 'Montserrat';
             font-style: normal;
             font-weight: 600;
             src: url("../fonts/montserrat/Montserrat-SemiBold.ttf");
-            /* IE9 Compat Modes */ }
+            /* IE9 Compat Modes */
+        }
+
         @font-face {
             font-family: 'Montserrat';
             font-style: normal;
             font-weight: 700;
             src: url("../fonts/montserrat/Montserrat-Bold.ttf");
-            /* IE9 Compat Modes */ }
+            /* IE9 Compat Modes */
+        }
+
         @font-face {
             font-family: 'Montserrat';
             font-style: italic;
             font-weight: 700;
             src: url("../fonts/montserrat/Montserrat-BoldItalic.ttf");
-            /* IE9 Compat Modes */ }
+            /* IE9 Compat Modes */
+        }
+
         @font-face {
             font-family: 'Montserrat';
             font-style: italic;
             font-weight: 900;
-            src: url("../fonts/montserrat/montserrat-v12-latin-900.ttf"), url("../fonts/montserrat/montserrat-v12-latin-900.eot") format("embedded-opentype"), url("../fonts/montserrat/montserrat-v12-latin-900.svg") format("woff2"), url("../fonts/montserrat/montserrat-v12-latin-900.woff") format("woff"), url("../fonts/montserrat/montserrat-v12-latin-900.woff2") format("truetype"); }
+            src: url("../fonts/montserrat/montserrat-v12-latin-900.ttf"), url("../fonts/montserrat/montserrat-v12-latin-900.eot") format("embedded-opentype"), url("../fonts/montserrat/montserrat-v12-latin-900.svg") format("woff2"), url("../fonts/montserrat/montserrat-v12-latin-900.woff") format("woff"), url("../fonts/montserrat/montserrat-v12-latin-900.woff2") format("truetype");
+        }
+
         a:focus, a:active {
             text-decoration: none;
             outline: none;
@@ -132,7 +153,8 @@
             -moz-transition: all 300ms ease 0s;
             -webkit-transition: all 300ms ease 0s;
             -o-transition: all 300ms ease 0s;
-            -ms-transition: all 300ms ease 0s; }
+            -ms-transition: all 300ms ease 0s;
+        }
 
         input, select, textarea {
 
@@ -141,7 +163,8 @@
             -moz-appearance: unset !important;
             -webkit-appearance: unset !important;
             -o-appearance: unset !important;
-            -ms-appearance: unset !important; }
+            -ms-appearance: unset !important;
+        }
 
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
             appearance: none !important;
@@ -149,7 +172,8 @@
             -webkit-appearance: none !important;
             -o-appearance: none !important;
             -ms-appearance: none !important;
-            margin: 0; }
+            margin: 0;
+        }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
@@ -157,33 +181,39 @@
             -moz-box-shadow: none !important;
             -webkit-box-shadow: none !important;
             -o-box-shadow: none !important;
-            -ms-box-shadow: none !important; }
+            -ms-box-shadow: none !important;
+        }
 
         input[type=checkbox] {
             appearance: checkbox !important;
             -moz-appearance: checkbox !important;
             -webkit-appearance: checkbox !important;
             -o-appearance: checkbox !important;
-            -ms-appearance: checkbox !important; }
+            -ms-appearance: checkbox !important;
+        }
 
         input[type=radio] {
             appearance: radio !important;
             -moz-appearance: radio !important;
             -webkit-appearance: radio !important;
             -o-appearance: radio !important;
-            -ms-appearance: radio !important; }
+            -ms-appearance: radio !important;
+        }
 
         img {
             max-width: 100%;
-            height: auto; }
+            height: auto;
+        }
 
         figure {
-            margin: 0; }
+            margin: 0;
+        }
 
         p {
             margin-bottom: 0px;
             font-size: 15px;
-            color: #777; }
+            color: #777;
+        }
 
         h2 {
             line-height: 1.66;
@@ -195,10 +225,12 @@
             font-size: 24px;
             text-transform: uppercase;
             text-align: center;
-            margin-bottom: 40px; }
+            margin-bottom: 40px;
+        }
 
         .clear {
-            clear: both; }
+            clear: both;
+        }
 
         body {
             font-size: 14px;
@@ -214,12 +246,14 @@
             -o-background-size: cover;
             -ms-background-size: cover;
             background-position: center center;
-            padding: 115px 0; }
+            padding: 115px 0;
+        }
 
         .container {
             width: 660px;
             position: relative;
-            margin: 0 auto; }
+            margin: 0 auto;
+        }
 
         .display-flex {
             justify-content: space-between;
@@ -231,7 +265,8 @@
             -moz-align-items: center;
             -webkit-align-items: center;
             -o-align-items: center;
-            -ms-align-items: center; }
+            -ms-align-items: center;
+        }
 
         .display-flex-center {
             justify-content: center;
@@ -243,7 +278,8 @@
             -moz-align-items: center;
             -webkit-align-items: center;
             -o-align-items: center;
-            -ms-align-items: center; }
+            -ms-align-items: center;
+        }
 
         .position-center {
             position: absolute;
@@ -253,7 +289,8 @@
             -moz-transform: translate(-50%, -50%);
             -webkit-transform: translate(-50%, -50%);
             -o-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%); }
+            -ms-transform: translate(-50%, -50%);
+        }
 
         .signup-content {
             background: #fff;
@@ -262,11 +299,13 @@
             -webkit-border-radius: 10px;
             -o-border-radius: 10px;
             -ms-border-radius: 10px;
-            padding: 50px 85px; }
+            padding: 50px 85px;
+        }
 
         .form-group {
             overflow: hidden;
-            margin-bottom: 20px; }
+            margin-bottom: 20px;
+        }
 
         .form-input {
             width: 100%;
@@ -280,32 +319,56 @@
             box-sizing: border-box;
             font-size: 14px;
             font-weight: 500;
-            color: #222; }
+            color: #222;
+        }
+
         .form-input::-webkit-input-placeholder {
-            color: #999; }
+            color: #999;
+        }
+
         .form-input::-moz-placeholder {
-            color: #999; }
+            color: #999;
+        }
+
         .form-input:-ms-input-placeholder {
-            color: #999; }
+            color: #999;
+        }
+
         .form-input:-moz-placeholder {
-            color: #999; }
+            color: #999;
+        }
+
         .form-input::-webkit-input-placeholder {
-            font-weight: 500; }
+            font-weight: 500;
+        }
+
         .form-input::-moz-placeholder {
-            font-weight: 500; }
+            font-weight: 500;
+        }
+
         .form-input:-ms-input-placeholder {
-            font-weight: 500; }
+            font-weight: 500;
+        }
+
         .form-input:-moz-placeholder {
-            font-weight: 500; }
+            font-weight: 500;
+        }
 
         .form-input:focus::-webkit-input-placeholder {
-            color: #222; }
+            color: #222;
+        }
+
         .form-input:focus::-moz-placeholder {
-            color: #222; }
+            color: #222;
+        }
+
         .form-input:focus:-ms-input-placeholder {
-            color: #222; }
+            color: #222;
+        }
+
         .form-input:focus:-moz-placeholder {
-            color: #222; }
+            color: #222;
+        }
 
 
         .form-submit {
@@ -326,18 +389,22 @@
             background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
             background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
             background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
-            background-image: linear-gradient(to left, #282f44, #e6af2e, #282f44); }
+            background-image: linear-gradient(to left, #282f44, #e6af2e, #282f44);
+        }
+
         input[type=checkbox]:not(old) {
             width: 2em;
             margin: 0;
             padding: 0;
             font-size: 1em;
-            display: none; }
+            display: none;
+        }
 
         input[type=checkbox]:not(old) + label {
             display: inline-block;
             margin-top: 7px;
-            margin-bottom: 25px; }
+            margin-bottom: 25px;
+        }
 
         input[type=checkbox]:not(old) + label > span {
             display: inline-block;
@@ -357,14 +424,16 @@
             background-image: -o-linear-gradient(white, white);
             background-image: -webkit-linear-gradient(white, white);
             background-image: linear-gradient(white, white);
-            vertical-align: bottom; }
+            vertical-align: bottom;
+        }
 
         input[type=checkbox]:not(old):checked + label > span {
             background-image: -moz-linear-gradient(white, white);
             background-image: -ms-linear-gradient(white, white);
             background-image: -o-linear-gradient(white, white);
             background-image: -webkit-linear-gradient(white, white);
-            background-image: linear-gradient(white, white); }
+            background-image: linear-gradient(white, white);
+        }
 
         input[type=checkbox]:not(old):checked + label > span:before {
             content: '\f26b';
@@ -374,26 +443,31 @@
             line-height: 1.2;
             text-align: center;
             font-family: 'Material-Design-Iconic-Font';
-            font-weight: bold; }
+            font-weight: bold;
+        }
 
         .label-agree-term {
             font-size: 12px;
             font-weight: 600;
-            color: #555; }
+            color: #555;
+        }
 
         .term-service {
-            color: #555; }
+            color: #555;
+        }
 
         .loginhere {
             color: #555;
             font-weight: 500;
             text-align: center;
             margin-top: 91px;
-            margin-bottom: 5px; }
+            margin-bottom: 5px;
+        }
 
         .loginhere-link {
             font-weight: 700;
-            color: #222; }
+            color: #222;
+        }
 
         .field-icon {
             float: right;
@@ -401,15 +475,21 @@
             margin-top: -32px;
             position: relative;
             z-index: 2;
-            color: #555; }
+            color: #555;
+        }
 
         @media screen and (max-width: 768px) {
             .container {
                 width: calc(100% - 40px);
-                max-width: 100%; } }
+                max-width: 100%;
+            }
+        }
+
         @media screen and (max-width: 480px) {
             .signup-content {
-                padding: 50px 25px; } }
+                padding: 50px 25px;
+            }
+        }
     </style>
 </head>
 
@@ -444,24 +524,45 @@
         <div class="container">
 
             <div class="signup-content" style="background-color: #282f44 ; ">
-                <form th:action="@{/register}" method="post" id="signup-form"
+                <form th:action="@{/login}"
+                      sec:authorize="isAnonymous()"
+                      method="post" id="signup-form"
                       class="signup-form">
                     <h2 class="form-title yellow">ورود با شماره تلفن</h2>
 
                     <div class="form-group">
-                        <label for="phone"></label><input
-                            th:field="${user.mobile}"
-                                                          type="tel"
-                                                           class="form-input" name="phone"
-                                                          id="phone" placeholder="...09"
-                                                          pattern="09[0-9]{9}" style="text-align: left;">
-                    </div>
+                        <label for="username"></label><input
 
-                    <div class="form-group">
+                            type="text"
+                            class="form-input" name="username"
+                            id="username" placeholder="...09"
+                            pattern="09[0-9]{9}" style="text-align: left;">
+                    </div>
+                    <div class="form-group" style="display: none">
+                        <label for="password"></label><input
+                            type="password"
+                            class="form-input" name="password"
+                            id="password" value="password" placeholder="...09"
+                            style="text-align: left;">
+                    </div>
+                    <div class="form-group" sec:authorize="isAnonymous()">
                         <input type="submit" name="submit" id="submit"
                                class="form-submit" value="ثبت" style="">
                     </div>
                 </form>
+
+                <h2 class="form-title yellow"
+                    sec:authorize="isAuthenticated()">شما وارد شده
+                    اید!</h2>
+                <div class="form-group" sec:authorize="isAuthenticated()">
+                    <a href="/" th:href="@{/logout}">
+                        <button type="submit" name="submit"
+                                id="submit"
+                                class="form-submit" value="خروج" style="">خروج
+                        </button>
+                    </a>
+                    >
+                </div>
 
             </div>
         </div>
