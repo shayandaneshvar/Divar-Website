@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.stream.Collectors;
 
@@ -30,5 +32,17 @@ public class MainController {
     @GetMapping(value = "/contact")
     public String contactUs() {
         return "contact";
+    }
+
+    @GetMapping("/login")
+    public String showRegister(Model model) {
+        model.addAttribute("mobile", new String());
+        return "register";
+    }
+
+    @PostMapping("/login")
+    public String register(@ModelAttribute String mobile) {
+        // TODO: 7/21/2020  
+        return "redirect:/";
     }
 }
