@@ -23,6 +23,7 @@ public class ResidentialRentDto2Model implements Converter<NewResidentialRentDTO
                 .setArea(Double.valueOf(src.getArea()))
                 .setRooms(src.getRooms()).setTitle(src.getTitle())
                 .setDescription(src.getDescription())
+                .setTitle(src.getTitle())
                 .setMobile(src.getMobile());
         return (ResidentialRent) out;
     }

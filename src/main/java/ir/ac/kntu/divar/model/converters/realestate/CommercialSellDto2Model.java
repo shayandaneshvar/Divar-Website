@@ -23,6 +23,7 @@ public class CommercialSellDto2Model implements Converter<NewCommercialSellDTO,
                 .setArea(Double.valueOf(src.getArea()))
                 .setRooms(src.getRooms()).setTitle(src.getTitle())
                 .setDescription(src.getDescription())
+                .setTitle(src.getTitle())
                 .setMobile(src.getMobile());
         return (CommercialSell) out;
     }

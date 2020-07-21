@@ -21,6 +21,7 @@ public class ResidentialSellDto2Model implements Converter<NewResidentialSellDTO
                 .setArea(Double.valueOf(src.getArea()))
                 .setRooms(src.getRooms()).setTitle(src.getTitle())
                 .setDescription(src.getDescription())
+                .setTitle(src.getTitle())
                 .setMobile(src.getMobile());
         return (ResidentialSell) out;
     }

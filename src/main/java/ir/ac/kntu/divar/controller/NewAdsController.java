@@ -1,9 +1,14 @@
 package ir.ac.kntu.divar.controller;
 
 import ir.ac.kntu.divar.model.dto.NewVehicleDTO;
+import ir.ac.kntu.divar.model.dto.electronics.NewLaptopDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewCommercialSellDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewResidentialRentDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewResidentialSellDTO;
+import ir.ac.kntu.divar.model.service.advertisement.electronics.ConsoleService;
+import ir.ac.kntu.divar.model.service.advertisement.electronics.LaptopService;
+import ir.ac.kntu.divar.model.service.advertisement.electronics.MobileService;
+import ir.ac.kntu.divar.model.service.advertisement.electronics.PCService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.CommercialSellService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.ResidentialRentService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.ResidentialSellService;
@@ -31,6 +36,10 @@ public class NewAdsController {
     private final CommercialSellService commercialSellService;
     private final CarService carService;
     private final TruckService truckService;
+    private final LaptopService laptopService;
+    private final MobileService mobileService;
+    private final PCService pcService;
+    private final ConsoleService consoleService;
 
     @GetMapping()
     public String getNewAdvertisement() {
@@ -85,6 +94,22 @@ public class NewAdsController {
         model.addAttribute("rs", new NewVehicleDTO());
         model.addAttribute("address", "truck");
         return "NewVehicle";
+    }
+
+    @GetMapping("/laptop")
+    public String newLaptop(Model model) {
+        model.addAttribute("rs", new NewLaptopDTO());
+        return "NewLaptop";
+    }
+
+    @PostMapping("/laptop")
+    public String newLaptopSubmit(NewLaptopDTO input,
+                                  @RequestParam("uploadedImage")
+                                          MultipartFile file)
+            throws IOException {
+        String fileName = UploadUtil.handleUpload(file);
+        laptopService.create(input, fileName);
+        return "redirect:/";
     }
 
     @PostMapping("/buy-commercial")
