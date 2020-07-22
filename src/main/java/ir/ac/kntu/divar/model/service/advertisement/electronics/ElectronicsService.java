@@ -1,25 +1,30 @@
 package ir.ac.kntu.divar.model.service.advertisement.electronics;
 
+import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.electronics.ElectronicsAdvertisement;
+import ir.ac.kntu.divar.model.service.advertisement.Handler;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class ElectronicsService {
+public class ElectronicsService implements Handler {
     private final ConsoleService consoleService;
     private final LaptopService laptopService;
     private final PCService pcService;
     private final MobileService mobileService;
 
-
+    @Loggable
     public static List<? extends ElectronicsAdvertisement> filterUtil(List<? extends
             ElectronicsAdvertisement> result, GeneralFilterDTO dto) {
         if (dto.getRequested() != dto.getOnSale()) {
@@ -68,6 +73,7 @@ public class ElectronicsService {
         return result;
     }
 
+    @Loggable
     public List<? extends ElectronicsAdvertisement> getAllByCity(String input) {
         List<ElectronicsAdvertisement> list =
                 new ArrayList<>(pcService.getAllByCity(input));
@@ -77,6 +83,7 @@ public class ElectronicsService {
         return list;
     }
 
+    @Loggable
     public List<? extends ElectronicsAdvertisement> filter(String input,
                                                            GeneralFilterDTO dto) {
         List<ElectronicsAdvertisement> list =
@@ -85,5 +92,34 @@ public class ElectronicsService {
         list.addAll(mobileService.filter(input, dto));
         list.addAll(consoleService.filter(input, dto));
         return list;
+    }
+
+    @Override
+    public AdvertisementDTO apply(Long aLong) {
+        List<Handler> handlers = Arrays.asList(consoleService, pcService,
+                laptopService, mobileService);
+        return handlers.stream().map(z -> {
+            AdvertisementDTO res;
+            try {
+                res = z.apply(aLong);
+            } catch (Exception ignored) {
+                res = null;
+            }
+            return res;
+        }).filter(Objects::nonNull).findFirst().orElse(null);
+    }
+
+    public ElectronicsAdvertisement findById(Long id) {
+        ElectronicsAdvertisement ad = consoleService.findById(id);
+        if (ad == null) {
+            ad = pcService.findById(id);
+        }
+        if (ad == null) {
+            ad = mobileService.findById(id);
+        }
+        if (ad == null) {
+            ad = laptopService.findById(id);
+        }
+        return ad;
     }
 }

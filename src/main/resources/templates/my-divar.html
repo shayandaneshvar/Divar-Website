@@ -1,0 +1,188 @@
+<!doctype html>
+<html html="" lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://s100.divarcdn.com/static/thewall-assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="../static/images/icons8-brick-wall-64.png" th:href="@{/images/icons8-brick-wall-64.png}">
+    <link rel="mask-icon" href="https://s100.divarcdn.com/static/thewall-assets/safari-pinned-tab.svg" color="#a62626">
+    <link data-chunk="main" rel="stylesheet" href="https://s100.divarcdn.com/statics/2020/07/chunk-1.369c89ae.css">
+    <link data-chunk="main" rel="stylesheet" href="https://s100.divarcdn.com/statics/2020/07/chunk-10.de2181b2.css">
+
+    <title data-react-helmet="true">دیوار من</title>
+    <style>
+        .myBtn {
+            background-color: #e6af2e !important;
+            border: 0 !important;
+        }
+
+        .myLink {
+            color: #ececec !important;
+        }
+
+        .myBtn:hover {
+            background-color: #f5d061 !important;
+        }
+
+        .white {
+            color: #ececec !important;
+        }
+
+        .white-solid {
+            color: #ececec !important;
+        }
+
+        .white:hover {
+            color: #C8C5C5 !important;
+        }
+
+        .yellow {
+            border-color: #f5d061 !important;
+            color: #f5d061 !important;
+        }
+
+        .post-card:after {
+            background-color: #f5d061;
+            -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+            visibility: hidden;
+            transition: -webkit-transform .25s ease-out;
+            transition: transform .25s ease-out;
+            will-change: transform, visibility;
+        }
+    </style>
+</head>
+<body dir="rtl" style="background-color: #282f44;" data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+<div id="app">
+    <nav class="ui secondary top fixed navbar menu" style="background-color:#222831!important;">
+        <a target="_self" class="" href="/">
+            <img src="../static/images/icons8-brick-wall-641.png" alt="" th:src="@{/images/icons8-brick-wall-641.png}" style="transform:
+             scale(0.85);border-radius: 8%;">
+        </a>
+
+
+        <div class="menu links"><a class="item link myLink" href="/my-divar/my-posts">دیوار
+            من</a><a href="https://help.divar.ir" class="item link myLink">پشتیبانی
+        </a><a class="item link myLink" href="/contact">تماس با ما</a>
+            <div class="item newButton"><a class="ui button buttons buttons--red divari-colored myBtn" role="button" href="/new">ثبت آگهی</a></div>
+        </div>
+    </nav>
+    <div class="ui text container">
+        <div class="my-divar">
+            <!-- active 1-->
+            <div class="ui pointing secondary my-divar__tabs menu" th:if="${type==1}">
+                <a class="active yellow item my-divar__tab-title" href="/my-divar/my-posts">آگهی&zwnj;های من
+                </a>
+                <a class="item my-divar__tab-title white" href="/my-divar/bookmarks">آگهی های نشان شده
+                </a>
+                <a class="item my-divar__tab-title white" href="/my-divar/recents">بازدیدهای اخیر
+                </a>
+            </div>
+            <!-- active 2-->
+            <div class="ui pointing secondary my-divar__tabs menu" th:if="${type==2}">
+                <a class="item my-divar__tab-title white " href="/my-divar/my-posts">آگهی&zwnj;های من
+                </a>
+                <a class="active yellow item my-divar__tab-title white" href="/my-divar/bookmarks">آگهی های نشان شده
+                </a>
+                <a class="item my-divar__tab-title white" href="/my-divar/recents">بازدیدهای اخیر
+                </a>
+            </div>
+            <!-- active 3-->
+            <div class="ui pointing secondary my-divar__tabs menu" th:if="${type==3}">
+                <a class="item my-divar__tab-title  white" href="/my-divar/my-posts">آگهی&zwnj;های من
+                </a>
+                <a class="item my-divar__tab-title white" href="/my-divar/bookmarks">آگهی های نشان شده
+                </a>
+                <a class="active yellow item my-divar__tab-title white" href="/my-divar/recents">بازدیدهای اخیر
+                </a>
+            </div>
+
+            <div class="my-divar__posts">
+                <div th:if="${type==1} and ${ads.isEmpty()}" id="registered" class="login-message white-solid">تا به
+                    حال
+                    در دیوار آگهی ثبت نکرده&zwnj;اید
+                    <a class="ui primary button login-message__login-btn myBtn" role="button" href="/new">ثبت رایگان آگهی
+                    </a>
+                </div>
+
+                <div class="login-message white-solid" th:if="${type==2} and ${ads.isEmpty()}">شما آگهی نشان
+                    شده&zwnj;ای
+                    ندارید.
+                    <div class="login-message__extra white-solid">با زدن روی
+                        دکمه “نشان کردن” در صفحه آگهی، می&zwnj;توانید آن&zwnj;ها
+                        را در این لیست ذخیره کنید
+                    </div>
+
+                </div>
+
+                <div th:if="${type==3} and ${!ads.isEmpty()}">
+                    <div class="bookmarks__actions">
+                        <a href="/my-divar/recents/clear">
+                            <button class="ui button myBtn white-solid" role="button">
+                                حذف تاریخچه
+                            </button>
+                        </a>
+                    </div>
+
+                </div>
+                <div th:if="${type==3} and ${ads.isEmpty()}">
+                    <div class="my-divar__posts white-solid">هیچ آگهی&zwnj;ای
+                        ذخیره نشده است
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-12 p-none browse">
+
+
+        <main class="browse__main">
+
+
+            <div class="post-list-grid virtual-infinite-scroll">
+                <div style="top:0;position:absolute;height:100%;width:100%" class="virtual-infinite-scroll__viewport">
+                    <div style="padding-top:0px;padding-bottom:0px" class="browse-post-list">
+
+                        <div th:each="ad:${ads}" class="col-xs-12 col-sm-6 col-xl-4 p-tb-large p-lr-gutter post-card-item">
+                            <a class="post-card" href="/v/٤٧متر-فول-امکانات_آپارتمان_تهران_بریانک_دیوار/wXUUwyWC" th:href="@{/ads/vehicles/{id}(id=${ad.id})}">
+                                <div class="post-card__content">
+                                    <div class="subtitle-16 post-card__title" style="color: #e6af2e;" th:text="${ad.getTitle()}">
+                                        ٤٧متر فول امکانات
+                                    </div>
+                                    <div th:if="${(ad.price)==-2}" class="body-12 post-card__description" style=" color: #e6af2e;">
+                                        توافقی
+                                    </div>
+                                    <div th:if="${(ad.price)!=-2}" th:text="
+                                    ${ad.price.toString()}" class="body-12 post-card__description" style=" color: #e6af2e;">
+                                        توافقی
+                                    </div>
+                                    <div class="body-12 post-card__info">
+                                        <span th:if="${ad.urgent}" class="p-lr-xsmall post-card__info-urgent" style="color: #f5d061;">فوری</span>
+                                        <span th:if="${ad.zone!=null}" th:text="${ad.zone.name}" class="post-card__info-label" style="color: #ececec !important;">در بریانک
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="post-card__image">
+                                    <picture th:if="${ad.hasImage}">
+                                        <img th:src="@{/pictures{pic}(pic=${ad.getPicture()})}" alt="عکس پیدا نشد" src="../static/pictures/sd.jpg" class="post-card-image">
+                                    </picture>
+                                    <picture th:if="${!ad.hasImage}">
+                                        <img th:src="@{/pictures/default.png}" alt="٤٧متر فول امکانات" src="../static/pictures/default.png" class="post-card-image">
+                                    </picture>
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+</body></html>

@@ -78,6 +78,9 @@ public class NewAdsController {
                                @RequestParam("uploadedImage")
                                        MultipartFile file) throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         carService.create(input, fileName);
         return "redirect:/";
     }
@@ -87,6 +90,9 @@ public class NewAdsController {
                                  @RequestParam("uploadedImage")
                                          MultipartFile file) throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         truckService.create(input, fileName);
         return "redirect:/";
     }
@@ -130,6 +136,9 @@ public class NewAdsController {
                                       MultipartFile file)
             throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         pcService.create(input, fileName);
         return "redirect:/";
     }
@@ -140,6 +149,9 @@ public class NewAdsController {
                                            MultipartFile file)
             throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         consoleService.create(input, fileName);
         return "redirect:/";
     }
@@ -150,6 +162,9 @@ public class NewAdsController {
                                           MultipartFile file)
             throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         mobileService.create(input, fileName);
         return "redirect:/";
     }
@@ -160,6 +175,9 @@ public class NewAdsController {
                                           MultipartFile file)
             throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         laptopService.create(input, fileName);
         return "redirect:/";
     }
@@ -170,6 +188,9 @@ public class NewAdsController {
                                             MultipartFile file)
             throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         commercialSellService.create(input, fileName);
         return "redirect:/";
     }
@@ -180,6 +201,9 @@ public class NewAdsController {
                                                    MultipartFile file)
             throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         residentialRentService.create(input, fileName);
         return "redirect:/";
     }
@@ -190,6 +214,9 @@ public class NewAdsController {
                                                    MultipartFile file)
             throws IOException {
         String fileName = UploadUtil.handleUpload(file);
+        if (input.getZone() != null && input.getZone().trim().length() == 0) {
+            input.setZone(null);
+        }
         residentialSellService.create(input, fileName);
         return "redirect:/";
     }

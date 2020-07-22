@@ -13,6 +13,7 @@ public class UploadUtil {
     public static final String UPLOAD_DIRECTORY = "./src/main" +
             "/resources/static/pictures";
 
+    @Loggable
     public static String handleUpload(MultipartFile file) throws IOException {
         String fileName = null;
         if (file != null && !file.isEmpty() && file.getSize() > 0 &&

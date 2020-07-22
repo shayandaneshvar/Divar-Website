@@ -25,25 +25,20 @@ public class LoggingAspect {
         builder.append(joinPoint.getSignature().getName())
                 .append("[args](");
         Arrays.stream(args).forEach(z -> builder.append(z).append(","));
-        builder.append(" ");
+        builder.append(" )");
         LOGGER.info(builder.toString());
     }
 
     @Around("executeLogging()")
-    public Object measurePerformance(ProceedingJoinPoint joinPoint) {
+    public Object measurePerformance(ProceedingJoinPoint joinPoint)
+            throws Throwable {
         StringBuilder builder = new StringBuilder();
         builder.append(joinPoint.getSignature());
         long start = System.currentTimeMillis();
         long end;
         Object ret;
-        try {
-            ret = joinPoint.proceed();
-            end = System.currentTimeMillis();
-        } catch (Throwable t) {
-            builder.append(" Error ");
-            LOGGER.info(builder.toString());
-            throw new RuntimeException();
-        }
+        ret = joinPoint.proceed();
+        end = System.currentTimeMillis();
         builder.append((end - start));
         LOGGER.info(builder.toString());
         return ret;

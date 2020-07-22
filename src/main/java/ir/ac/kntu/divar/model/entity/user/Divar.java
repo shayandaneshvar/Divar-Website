@@ -9,6 +9,8 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
 
 @Data
 @NoArgsConstructor

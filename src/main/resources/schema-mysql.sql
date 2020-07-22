@@ -1,9 +1,8 @@
-
 create table divar
 (
     id bigint auto_increment,
     primary key (id)
-) engine=MyISAM;
+) engine = MyISAM;
 
 create table user
 (
@@ -14,25 +13,25 @@ create table user
     foreign key (divar_id)
         references divar (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table city
 (
-    id   bigint auto_increment,
-    _name varchar(40) not null unique ,
+    id    bigint auto_increment,
+    _name varchar(40) not null unique,
     primary key (id)
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table zone
 (
     id      bigint auto_increment,
-    _name    varchar(30) not null,
+    _name   varchar(30) not null,
     city_id bigint      not null,
     primary key (id),
     foreign key (city_id)
         references city (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table advertisement
 (
@@ -49,10 +48,10 @@ create table advertisement
     zone_id     bigint,
     primary key (id),
     foreign key (zone_id) references zone (id)
-    on update cascade on delete cascade,
+        on update cascade on delete cascade,
     foreign key (city_id) references city (id)
-    on update cascade on delete cascade
-)engine=MyISAM;
+        on update cascade on delete cascade
+) engine = MyISAM;
 
 
 create table user_ads
@@ -64,7 +63,7 @@ create table user_ads
     foreign key (ad_id)
         references advertisement (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table marked_ads
 (
@@ -75,7 +74,7 @@ create table marked_ads
     foreign key (ad_id)
         references advertisement (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table recent_ads
 (
@@ -86,7 +85,7 @@ create table recent_ads
     foreign key (ad_id)
         references advertisement (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table vehicle
 (
@@ -99,7 +98,7 @@ create table vehicle
     foreign key (id)
         references advertisement (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table electronics
 (
@@ -109,7 +108,7 @@ create table electronics
     foreign key (id)
         references advertisement (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table real_estate
 (
@@ -121,7 +120,7 @@ create table real_estate
     foreign key (id)
         references advertisement (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table car
 (
@@ -131,7 +130,7 @@ create table car
     foreign key (id)
         references vehicle (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table truck
 (
@@ -141,7 +140,7 @@ create table truck
     foreign key (id)
         references vehicle (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table console
 (
@@ -150,7 +149,7 @@ create table console
     foreign key (id)
         references electronics (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 
 create table laptop
@@ -161,7 +160,7 @@ create table laptop
     foreign key (id)
         references electronics (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 
 create table mobile
@@ -173,7 +172,7 @@ create table mobile
     foreign key (id)
         references electronics (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table pc
 (
@@ -182,7 +181,7 @@ create table pc
     foreign key (id)
         references electronics (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 
 create table commercial_sell
@@ -192,8 +191,8 @@ create table commercial_sell
     id               bigint not null,
     primary key (id),
     foreign key (id) references real_estate (id)
-    on update cascade on delete cascade
-)engine=MyISAM;
+        on update cascade on delete cascade
+) engine = MyISAM;
 
 
 create table residential_rent
@@ -205,7 +204,7 @@ create table residential_rent
     foreign key (id)
         references real_estate (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table residential_sell
 (
@@ -215,7 +214,7 @@ create table residential_sell
     foreign key (id)
         references real_estate (id)
         on update cascade on delete cascade
-)engine=MyISAM;
+) engine = MyISAM;
 
 create table support
 (
@@ -224,4 +223,4 @@ create table support
     email       varchar(100),
     subject     varchar(100),
     primary key (id)
-)engine=MyISAM;
+) engine = MyISAM;

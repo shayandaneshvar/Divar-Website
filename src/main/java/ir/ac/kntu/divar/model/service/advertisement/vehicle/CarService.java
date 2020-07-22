@@ -1,6 +1,8 @@
 package ir.ac.kntu.divar.model.service.advertisement.vehicle;
 
+import ir.ac.kntu.divar.model.converters.vehicle.Vehicle2AdDto;
 import ir.ac.kntu.divar.model.converters.vehicle.VehicleDto2Car;
+import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.NewVehicleDTO;
 import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Car;
@@ -9,7 +11,9 @@ import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.repo.advertisement.vehicle.CarRepository;
 import ir.ac.kntu.divar.model.service.UserService;
+import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,21 +23,24 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class CarService {
+public class CarService implements Handler {
     private final LocationService locationService;
     private final CarRepository repository;
     private final UserService userService;
     private final VehicleDto2Car converter;
+    private final Vehicle2AdDto<Car> mapper;
 
     public List<Car> getAll() {
         return repository.findAll();
     }
 
+    @Loggable
     public List<Car> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
     }
 
+    @Loggable
     public List<Car> filter(String input, GeneralFilterDTO dto) {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
@@ -42,6 +49,7 @@ public class CarService {
         return (List<Car>) VehicleService.filterUtil(result, dto);
     }
 
+    @Loggable
     public Car create(NewVehicleDTO input, String fileName) {
         Car res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {
@@ -64,5 +72,14 @@ public class CarService {
         user.getDivar().getUserAdvertisements().add(res);
         userService.saveUser(user);
         return res;
+    }
+
+    @Override
+    public AdvertisementDTO apply(Long aLong) {
+        return mapper.convert(findById(aLong));
+    }
+
+    public Car findById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }
