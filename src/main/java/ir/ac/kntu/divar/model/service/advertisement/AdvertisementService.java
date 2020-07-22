@@ -31,7 +31,7 @@ public class AdvertisementService implements Handler {
         return list;
     }
 
-    @Loggable
+
     @Override
     public AdvertisementDTO apply(Long aLong) {
         List<Handler> handlers = Arrays.asList(electronicsService,

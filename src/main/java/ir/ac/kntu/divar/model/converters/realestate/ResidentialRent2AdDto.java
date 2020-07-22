@@ -23,7 +23,7 @@ public class ResidentialRent2AdDto implements Converter<ResidentialRent, Adverti
                 .setDescription(src.getDescription())//advertisement
                 .setRooms(src.getRooms())
                 .setArea(src.getArea().intValue())
-                .setAdvertiser(src.getAdType()
+                .setAdvertiser(src.getType()
                         .equals(RealEstateAdvertisement.AdvertiserType.
                                 PERSONAL) ? "شخصی" : "املاک")
                 .setRent(src.getRent().intValue())

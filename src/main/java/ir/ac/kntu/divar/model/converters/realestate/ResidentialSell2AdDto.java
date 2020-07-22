@@ -23,7 +23,7 @@ public class ResidentialSell2AdDto implements Converter<ResidentialSell, Adverti
                 .setDescription(src.getDescription())//advertisement
                 .setRooms(src.getRooms())
                 .setArea(src.getArea().intValue())
-                .setAdvertiser(src.getAdType()
+                .setAdvertiser(src.getType()
                         .equals(RealEstateAdvertisement.AdvertiserType.
                                 PERSONAL) ? "شخصی" : "املاک")
                 .setPrice(src.getPrice().intValue());
