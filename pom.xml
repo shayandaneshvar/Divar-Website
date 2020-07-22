@@ -11,7 +11,7 @@
     </parent>
     <groupId>ir.ac.kntu</groupId>
     <artifactId>divar</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1-RC</version>
     <name>divar</name>
     <description>Database course project</description>
     <developers>
