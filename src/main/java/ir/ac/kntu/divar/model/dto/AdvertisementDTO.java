@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 public class AdvertisementDTO {
     private String city, zone, title, description, mobile, model, forRent,
-            advertiser, hasDocument, isTablet, brand, picture;
+            advertiser, hasDocument, isTablet, brand, picture = "";
     private Integer price, productionYear, kilometerage, rooms, area, rent,
             prepayment;
 }

@@ -24,7 +24,7 @@ public class AdvertisementController {
         return "all-ads";
     }
 
-    @GetMapping({"/a/{id}", "/real-estate/{id}", "/vehicles/{id}"})
+    @GetMapping({"/a/{id}"})
     public String getAdvertisement(@PathVariable String id, Model model) {
         AdvertisementDTO dto;
         try {
@@ -34,5 +34,10 @@ public class AdvertisementController {
         }
         model.addAttribute("dto", dto);
         return "post"; // TODO: 7/22/2020  connect back to front
+    }
+
+    @GetMapping({"/real-estate/{id}", "/vehicles/{id}", "/electronics/{id}"})
+    public String getAdvertisement(@PathVariable String id) {
+        return ("forward:/ads/a/" + id);
     }
 }

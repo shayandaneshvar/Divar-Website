@@ -72,6 +72,6 @@ public class CarService implements Handler {
 
     @Override
     public AdvertisementDTO apply(Long aLong) {
-        return mapper.convert(repository.getOne(aLong));
+        return mapper.convert(repository.findById(aLong).orElseThrow());
     }
 }
