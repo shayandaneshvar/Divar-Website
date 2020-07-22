@@ -21,7 +21,6 @@ public class MyDivarController {
     @GetMapping("/my-posts")
     @PreAuthorize("hasAnyAuthority('USER')")
     public String getMyAds(Model model) {
-        System.out.println(userService.getCurrentLoggedOnUserCredentials().getAuthorities().toArray()[0]);
         List<? extends Advertisement> ads =
                 userService.getCurrentLoggedOnUserAds();
         model.addAttribute("ads", ads);
@@ -49,7 +48,7 @@ public class MyDivarController {
         return "my-divar";
     }
 
-    @RequestMapping("/recents?clear")
+    @RequestMapping("/recents/clear")
     public String clearRecentAds(){
         userService.clearCurrentUsersRecentAds();
         return "redirect:/my-divar/recents";

@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org"><head>
+<html lang="fa-IR" dir="rtl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"><head>
     <title>خانه</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
@@ -63,7 +64,12 @@
 
 
         <div class="menu links">
-            <a class="item link myLink" th:href="@{/login}" href="/login">ثبت نام/ورود</a>
+            <a class="item link myLink" th:href="@{/login}" href="/login"
+               sec:authorize="isAnonymous()"
+            >ثبت نام/ورود</a>
+            <a class="item link myLink" th:href="@{/login}" href="/login"
+            sec:authorize="isAuthenticated()">خروج
+            </a>
             <a class="item link myLink" href="/my-divar/my-posts">دیوار
                 من</a>
             <a href="/" th:href="@{/support}" class="item link myLink">پشتیبانی
