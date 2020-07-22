@@ -39,7 +39,7 @@ public class AdvertisementController {
             Advertisement ad = advertisementService.findById(id);
             userService.handleCurrentUserRecentAds(ad);
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
             throw new NotFoundException("Not Found!");
         }
         model.addAttribute("dto", dto);

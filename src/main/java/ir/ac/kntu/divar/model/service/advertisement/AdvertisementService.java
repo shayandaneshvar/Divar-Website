@@ -5,6 +5,7 @@ import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.service.advertisement.electronics.ElectronicsService;
 import ir.ac.kntu.divar.model.service.advertisement.realestate.RealEstateService;
 import ir.ac.kntu.divar.model.service.advertisement.vehicle.VehicleService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class AdvertisementService implements Handler {
     private final VehicleService vehicleService;
     private final RealEstateService realEstateService;
 
+    @Loggable
     public List<? extends Advertisement> getAllByCity(String city) {
         List<Advertisement> list =
                 new ArrayList<>(electronicsService.getAllByCity(city));
@@ -29,6 +31,7 @@ public class AdvertisementService implements Handler {
         return list;
     }
 
+    @Loggable
     @Override
     public AdvertisementDTO apply(Long aLong) {
         List<Handler> handlers = Arrays.asList(electronicsService,
@@ -44,6 +47,7 @@ public class AdvertisementService implements Handler {
         }).filter(Objects::nonNull).findFirst().orElse(null);
     }
 
+    @Loggable
     public Advertisement findById(String s) {
         Long id = Long.valueOf(s);
         Advertisement ad = electronicsService.findById(id);

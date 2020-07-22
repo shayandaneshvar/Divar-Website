@@ -6,7 +6,6 @@ import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewResidentialRentDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialRent;
-import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Truck;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
@@ -14,6 +13,7 @@ import ir.ac.kntu.divar.model.repo.advertisement.realestate.ResidentialRentRepos
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +34,13 @@ public class ResidentialRentService implements Handler {
         return repository.findAll();
     }
 
+    @Loggable
     public List<ResidentialRent> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
     }
 
+    @Loggable
     public List<ResidentialRent> filter(String input,
                                         RealEstateFilterDTO dto) {
         List<Zone> list = locationService
@@ -50,6 +52,7 @@ public class ResidentialRentService implements Handler {
         return (List<ResidentialRent>) RealEstateService.filterUtil(result, dto);
     }
 
+    @Loggable
     public ResidentialRent create(NewResidentialRentDTO input, String fileName) {
         ResidentialRent res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {
@@ -78,6 +81,7 @@ public class ResidentialRentService implements Handler {
     public AdvertisementDTO apply(Long aLong) {
         return mapper.convert(findById(aLong));
     }
+
     public ResidentialRent findById(Long id) {
         return repository.findById(id).orElse(null);
     }

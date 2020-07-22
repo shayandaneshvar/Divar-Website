@@ -5,6 +5,7 @@ import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.vehicle.VehicleAdvertisement;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class VehicleService implements Handler {
     private final CarService carService;
     private final TruckService truckService;
 
+    @Loggable
     public static List<? extends VehicleAdvertisement> filterUtil(List<? extends
             VehicleAdvertisement> result, GeneralFilterDTO dto) {
         if (dto.getOnSale() != dto.getRequested()) {
@@ -69,6 +71,7 @@ public class VehicleService implements Handler {
         return result;
     }
 
+    @Loggable
     public List<? extends VehicleAdvertisement> getAllByCity(String input) {
         List<VehicleAdvertisement> list =
                 new ArrayList<>(truckService.getAllByCity(input));
@@ -76,6 +79,7 @@ public class VehicleService implements Handler {
         return list;
     }
 
+    @Loggable
     public List<? extends VehicleAdvertisement> filter(String input,
                                                        GeneralFilterDTO dto) {
         List<VehicleAdvertisement> list =
@@ -84,6 +88,7 @@ public class VehicleService implements Handler {
         return list;
     }
 
+    @Loggable
     @Override
     public AdvertisementDTO apply(Long aLong) {
         List<Handler> handlers = Arrays.asList(carService, truckService);
@@ -98,6 +103,7 @@ public class VehicleService implements Handler {
         }).filter(Objects::nonNull).findFirst().orElse(null);
     }
 
+    @Loggable
     public VehicleAdvertisement findById(Long id) {
         VehicleAdvertisement vehicle = carService.findById(id);
         if (vehicle == null) {

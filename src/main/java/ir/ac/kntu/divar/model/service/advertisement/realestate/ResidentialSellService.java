@@ -3,10 +3,9 @@ package ir.ac.kntu.divar.model.service.advertisement.realestate;
 import ir.ac.kntu.divar.model.converters.realestate.ResidentialSell2AdDto;
 import ir.ac.kntu.divar.model.converters.realestate.ResidentialSellDto2Model;
 import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
-import ir.ac.kntu.divar.model.dto.realestate.NewResidentialSellDTO;
 import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
+import ir.ac.kntu.divar.model.dto.realestate.NewResidentialSellDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
-import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Truck;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
@@ -14,6 +13,7 @@ import ir.ac.kntu.divar.model.repo.advertisement.realestate.ResidentialSellRepos
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +34,13 @@ public class ResidentialSellService implements Handler {
         return repository.findAll();
     }
 
+    @Loggable
     public List<ResidentialSell> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
     }
 
+    @Loggable
     public List<ResidentialSell> filter(String input, RealEstateFilterDTO dto) {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
@@ -48,6 +50,7 @@ public class ResidentialSellService implements Handler {
         return (List<ResidentialSell>) RealEstateService.filterUtil(result, dto);
     }
 
+    @Loggable
     public ResidentialSell create(NewResidentialSellDTO input, String fileName) {
         ResidentialSell res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {
@@ -71,10 +74,12 @@ public class ResidentialSellService implements Handler {
         userService.saveUser(user);
         return res;
     }
+
     @Override
     public AdvertisementDTO apply(Long aLong) {
         return mapper.convert(findById(aLong));
     }
+
     public ResidentialSell findById(Long id) {
         return repository.findById(id).orElse(null);
     }

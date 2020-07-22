@@ -13,6 +13,7 @@ import ir.ac.kntu.divar.model.repo.advertisement.electronics.LaptopRepository;
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,11 +34,13 @@ public class LaptopService implements Handler {
         return repository.findAll();
     }
 
+    @Loggable
     public List<Laptop> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
     }
 
+    @Loggable
     public List<Laptop> filter(String input, GeneralFilterDTO dto) {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
@@ -46,6 +49,7 @@ public class LaptopService implements Handler {
         return (List<Laptop>) ElectronicsService.filterUtil(result, dto);
     }
 
+    @Loggable
     public Laptop create(NewLaptopDTO input, String fileName) {
         Laptop res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {

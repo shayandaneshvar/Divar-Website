@@ -14,6 +14,7 @@ import ir.ac.kntu.divar.model.repo.advertisement.realestate.CommercialSellReposi
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +35,13 @@ public class CommercialSellService implements Handler {
         return repository.findAll();
     }
 
+    @Loggable
     public List<CommercialSell> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
     }
 
+    @Loggable
     public List<ResidentialSell> filter(String input, RealEstateFilterDTO dto) {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
@@ -48,6 +51,7 @@ public class CommercialSellService implements Handler {
         return (List<ResidentialSell>) RealEstateService.filterUtil(result, dto);
     }
 
+    @Loggable
     public CommercialSell create(NewCommercialSellDTO input, String fileName) {
         CommercialSell res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {

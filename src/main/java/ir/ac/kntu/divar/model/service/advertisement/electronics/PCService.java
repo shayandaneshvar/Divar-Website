@@ -6,7 +6,6 @@ import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.electronics.NewElectronicsDTO;
 import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.electronics.PC;
-import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Truck;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
@@ -14,6 +13,7 @@ import ir.ac.kntu.divar.model.repo.advertisement.electronics.PCRepository;
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +34,13 @@ public class PCService implements Handler {
         return repository.findAll();
     }
 
+    @Loggable
     public List<PC> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
     }
 
+    @Loggable
     public List<PC> filter(String input, GeneralFilterDTO dto) {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
@@ -47,6 +49,7 @@ public class PCService implements Handler {
         return (List<PC>) ElectronicsService.filterUtil(result, dto);
     }
 
+    @Loggable
     public PC create(NewElectronicsDTO input, String fileName) {
         PC res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {
@@ -75,6 +78,7 @@ public class PCService implements Handler {
     public AdvertisementDTO apply(Long aLong) {
         return mapper.convert(findById(aLong));
     }
+
     public PC findById(Long id) {
         return repository.findById(id).orElse(null);
     }

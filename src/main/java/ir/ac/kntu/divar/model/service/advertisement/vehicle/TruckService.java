@@ -13,6 +13,7 @@ import ir.ac.kntu.divar.model.repo.advertisement.vehicle.TruckRepository;
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,13 @@ public class TruckService implements Handler {
     private final VehicleDto2Truck converter;
     private final Vehicle2AdDto<Truck> mapper;
 
+    @Loggable
     public List<Truck> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
     }
 
+    @Loggable
     public List<Truck> filter(String input, GeneralFilterDTO dto) {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
@@ -42,6 +45,7 @@ public class TruckService implements Handler {
         return (List<Truck>) VehicleService.filterUtil(result, dto);
     }
 
+    @Loggable
     public Truck create(NewVehicleDTO input, String fileName) {
         Truck res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {

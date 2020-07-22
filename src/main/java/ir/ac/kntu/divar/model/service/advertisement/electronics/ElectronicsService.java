@@ -5,6 +5,7 @@ import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.advertisement.electronics.ElectronicsAdvertisement;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class ElectronicsService implements Handler {
     private final PCService pcService;
     private final MobileService mobileService;
 
-
+    @Loggable
     public static List<? extends ElectronicsAdvertisement> filterUtil(List<? extends
             ElectronicsAdvertisement> result, GeneralFilterDTO dto) {
         if (dto.getRequested() != dto.getOnSale()) {
@@ -72,6 +73,7 @@ public class ElectronicsService implements Handler {
         return result;
     }
 
+    @Loggable
     public List<? extends ElectronicsAdvertisement> getAllByCity(String input) {
         List<ElectronicsAdvertisement> list =
                 new ArrayList<>(pcService.getAllByCity(input));
@@ -81,6 +83,7 @@ public class ElectronicsService implements Handler {
         return list;
     }
 
+    @Loggable
     public List<? extends ElectronicsAdvertisement> filter(String input,
                                                            GeneralFilterDTO dto) {
         List<ElectronicsAdvertisement> list =

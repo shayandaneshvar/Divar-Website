@@ -13,6 +13,7 @@ import ir.ac.kntu.divar.model.repo.advertisement.electronics.MobileRepository;
 import ir.ac.kntu.divar.model.service.UserService;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,11 +34,13 @@ public class MobileService implements Handler {
         return repository.findAll();
     }
 
+    @Loggable
     public List<Mobile> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
     }
 
+    @Loggable
     public List<Mobile> filter(String input, GeneralFilterDTO dto) {
         List<Zone> list = locationService
                 .getZonesContaining(dto.getZone() == null ? "" : dto.getZone());
@@ -46,6 +49,7 @@ public class MobileService implements Handler {
         return (List<Mobile>) ElectronicsService.filterUtil(result, dto);
     }
 
+    @Loggable
     public Mobile create(NewMobileDTO input, String fileName) {
         Mobile res = Objects.requireNonNull(converter.convert(input));
         if (fileName != null) {

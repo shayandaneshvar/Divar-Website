@@ -7,6 +7,7 @@ import ir.ac.kntu.divar.model.entity.advertisement.realestate.RealEstateAdvertis
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.service.advertisement.Handler;
 import ir.ac.kntu.divar.model.service.location.LocationService;
+import ir.ac.kntu.divar.util.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class RealEstateService implements Handler {
     private final ResidentialSellService residentialSellService;
     private final LocationService locationService;
 
+    @Loggable
     public ArrayList<RealEstateAdvertisement> getAll() {
         ArrayList<RealEstateAdvertisement> result = new ArrayList<>();
         result.addAll(commercialSellService.getAll());
@@ -33,7 +35,7 @@ public class RealEstateService implements Handler {
         return result;
     }
 
-
+    @Loggable
     public static List<? extends RealEstateAdvertisement> filterUtil(List<? extends
             RealEstateAdvertisement> result, RealEstateFilterDTO dto) {
         if (dto.getPersonal() != dto.getRealEstate()) {
@@ -57,6 +59,7 @@ public class RealEstateService implements Handler {
         return result;
     }
 
+    @Loggable
     public List<? extends RealEstateAdvertisement> filter(String input,
                                                           RealEstateFilterDTO dto) {
         List<Zone> list = locationService
@@ -67,6 +70,7 @@ public class RealEstateService implements Handler {
         return result;
     }
 
+    @Loggable
     public List<? extends RealEstateAdvertisement> getAllByCity(String city) {
         List<RealEstateAdvertisement> result =
                 new ArrayList<>(commercialSellService.getAllByCity(city));
@@ -90,6 +94,7 @@ public class RealEstateService implements Handler {
         }).filter(Objects::nonNull).findFirst().orElse(null);
     }
 
+    @Loggable
     public RealEstateAdvertisement findById(Long id) {
         RealEstateAdvertisement ad = commercialSellService.findById(id);
         if (ad == null) {
