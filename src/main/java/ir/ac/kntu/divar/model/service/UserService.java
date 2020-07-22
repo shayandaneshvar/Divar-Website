@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
@@ -56,10 +57,14 @@ public class UserService implements UserDetailsService {
     }
 
     public User getCurrentLoggedOnUser() {
+        return userRepository.findById(getCurrentLoggedOnUserCredentials()
+                .getUser().getId()).orElse(null);
+    }
+
+    public UserPrincipal getCurrentLoggedOnUserCredentials() {
         var ob = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (ob instanceof UserPrincipal) {
-            UserPrincipal principal = ((UserPrincipal) ob);
-            return userRepository.findById(principal.getUser().getId()).stream().peek(System.err::println).findFirst().get();
+            return ((UserPrincipal) ob);
         }
         return null;
     }
@@ -86,6 +91,27 @@ public class UserService implements UserDetailsService {
             user.getDivar().getRecentAdvertisements().remove(0);
         }
         user.getDivar().getRecentAdvertisements().add(ad);
+        saveUser(user);
+    }
+
+    public List<? extends Advertisement> getCurrentLoggedOnUserMarkedAds() {
+        User user = getCurrentLoggedOnUser();
+        return user.getDivar().getMarkedAdvertisements();
+    }
+
+    public List<? extends Advertisement> getCurrentLoggedOnUserAds() {
+        User user = getCurrentLoggedOnUser();
+        return user.getDivar().getUserAdvertisements();
+    }
+
+    public List<? extends Advertisement> getCurrentLoggedOnUserRecentAds() {
+        User user = getCurrentLoggedOnUser();
+        return user.getDivar().getRecentAdvertisements();
+    }
+
+    public void clearCurrentUsersRecentAds() {
+        User user = getCurrentLoggedOnUser();
+        user.getDivar().getRecentAdvertisements().clear();
         saveUser(user);
     }
 }
