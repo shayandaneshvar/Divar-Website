@@ -10,8 +10,10 @@ import java.nio.file.Paths;
 
 @UtilityClass
 public class UploadUtil {
-    public static final String UPLOAD_DIRECTORY = "./src/main" +
-            "/resources/static/pictures";
+    public static final String UPLOAD_DIRECTORY = "./src/uploads";
+//    public static final String UPLOAD_DIRECTORY = "./src/main" +
+//            "/resources/static/pictures";
+
 
     @Loggable
     public static String handleUpload(MultipartFile file) throws IOException {
