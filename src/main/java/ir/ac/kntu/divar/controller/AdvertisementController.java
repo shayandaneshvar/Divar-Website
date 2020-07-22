@@ -36,6 +36,8 @@ public class AdvertisementController {
             if (userService.isMarked(id)) {
                 marked = "نشان شده";
             }
+            Advertisement ad = advertisementService.findById(id);
+            userService.handleCurrentUserRecentAds(ad);
         } catch (Exception e) {
             System.err.println(e);
             throw new NotFoundException("Not Found!");

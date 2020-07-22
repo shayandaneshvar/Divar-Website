@@ -79,4 +79,13 @@ public class UserService implements UserDetailsService {
         }
         saveUser(user);
     }
+
+    public void handleCurrentUserRecentAds(Advertisement ad) {
+        User user = getCurrentLoggedOnUser();
+        if (user.getDivar().getRecentAdvertisements().size() >= 10) {
+            user.getDivar().getRecentAdvertisements().remove(0);
+        }
+        user.getDivar().getRecentAdvertisements().add(ad);
+        saveUser(user);
+    }
 }
