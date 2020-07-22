@@ -2,6 +2,7 @@ package ir.ac.kntu.divar.model.service;
 
 import ir.ac.kntu.divar.auth.UserPrincipal;
 import ir.ac.kntu.divar.exceptions.BadInputException;
+import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.entity.user.Divar;
 import ir.ac.kntu.divar.model.entity.user.User;
 import ir.ac.kntu.divar.model.repo.DivarRepository;
@@ -14,10 +15,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 @Service
+@Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
@@ -52,12 +55,28 @@ public class UserService implements UserDetailsService {
         return new UserPrincipal().setUser(user);
     }
 
-    public static User getCurrentLoggedOnUser() {
+    public User getCurrentLoggedOnUser() {
         var ob = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (ob instanceof UserPrincipal) {
             UserPrincipal principal = ((UserPrincipal) ob);
-            return principal.getUser();
+            return userRepository.findById(principal.getUser().getId()).stream().peek(System.err::println).findFirst().get();
         }
         return null;
+    }
+
+    public boolean isMarked(String id) {
+        User user = getCurrentLoggedOnUser();
+        return user != null && user.getDivar().getMarkedAdvertisements().stream()
+                .anyMatch(z -> z.getId().toString().equals(id));
+    }
+
+    public void handleCurrentUserMarkedAds(Advertisement ad) {
+        User user = getCurrentLoggedOnUser();
+        if (user.getDivar().getMarkedAdvertisements().contains(ad)) {
+            user.getDivar().getMarkedAdvertisements().remove(ad);
+        } else {
+            user.getDivar().getMarkedAdvertisements().add(ad);
+        }
+        saveUser(user);
     }
 }

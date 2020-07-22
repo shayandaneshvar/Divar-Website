@@ -28,6 +28,7 @@ public class LaptopService implements Handler {
     private final UserService userService;
     private final LaptopDto2Model converter;
     private final Laptop2AdDto mapper;
+
     public List<Laptop> getAll() {
         return repository.findAll();
     }
@@ -68,8 +69,13 @@ public class LaptopService implements Handler {
         userService.saveUser(user);
         return res;
     }
+
     @Override
     public AdvertisementDTO apply(Long aLong) {
-        return mapper.convert(repository.findById(aLong).orElseThrow());
+        return mapper.convert(findById(aLong));
+    }
+
+    public Laptop findById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }

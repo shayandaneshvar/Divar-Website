@@ -28,6 +28,7 @@ public class MobileService implements Handler {
     private final UserService userService;
     private final MobileDto2Model converter;
     private final Mobile2AdDto mapper;
+
     public List<Mobile> getAll() {
         return repository.findAll();
     }
@@ -68,8 +69,13 @@ public class MobileService implements Handler {
         userService.saveUser(user);
         return res;
     }
+
     @Override
     public AdvertisementDTO apply(Long aLong) {
-        return mapper.convert(repository.findById(aLong).orElseThrow());
+        return mapper.convert(findById(aLong));
+    }
+
+    public Mobile findById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }

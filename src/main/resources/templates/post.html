@@ -126,10 +126,13 @@
                     </div>
                 </div>
                 <div class="post-actions">
-                    <button sec:authorize="isAuthenticated()"
-                            class="ui button buttons buttons--red divari-colored myBtn"
-                            type="button">نشان کردن
-                    </button>
+                    <a href="/" th:href="@{/ads/{num}/mark(num=${id})}"
+                       sec:authorize="isAuthenticated()">
+                        <button sec:authorize="isAuthenticated()"
+                                class="ui button buttons buttons--red divari-colored myBtn"
+                                type="button" th:text="${mark}">نشان کردن
+                        </button>
+                    </a>
                     <div class="post-actions__contact">
                         <button class="ui button buttons buttons--red divari-colored myBtn"
                                 type="button">برگشت به صفحه اصلی

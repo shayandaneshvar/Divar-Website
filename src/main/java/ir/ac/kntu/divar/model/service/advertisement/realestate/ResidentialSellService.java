@@ -6,6 +6,7 @@ import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.realestate.NewResidentialSellDTO;
 import ir.ac.kntu.divar.model.dto.filters.RealEstateFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.realestate.ResidentialSell;
+import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Truck;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
@@ -72,6 +73,9 @@ public class ResidentialSellService implements Handler {
     }
     @Override
     public AdvertisementDTO apply(Long aLong) {
-        return mapper.convert(repository.findById(aLong).orElseThrow());
+        return mapper.convert(findById(aLong));
+    }
+    public ResidentialSell findById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }

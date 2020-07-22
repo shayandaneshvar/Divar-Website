@@ -5,7 +5,6 @@ import ir.ac.kntu.divar.model.converters.vehicle.VehicleDto2Truck;
 import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.NewVehicleDTO;
 import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
-import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Car;
 import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Truck;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
@@ -29,6 +28,7 @@ public class TruckService implements Handler {
     private final UserService userService;
     private final VehicleDto2Truck converter;
     private final Vehicle2AdDto<Truck> mapper;
+
     public List<Truck> getAllByCity(String input) {
         City city = locationService.getCity(input).orElseThrow();
         return repository.getAllByCity(city);
@@ -68,6 +68,10 @@ public class TruckService implements Handler {
 
     @Override
     public AdvertisementDTO apply(Long aLong) {
-        return mapper.convert(repository.findById(aLong).orElseThrow());
+        return mapper.convert(findById(aLong));
+    }
+
+    public Truck findById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }

@@ -97,4 +97,12 @@ public class VehicleService implements Handler {
             return res;
         }).filter(Objects::nonNull).findFirst().orElse(null);
     }
+
+    public VehicleAdvertisement findById(Long id) {
+        VehicleAdvertisement vehicle = carService.findById(id);
+        if (vehicle == null) {
+            vehicle = truckService.findById(id);
+        }
+        return vehicle;
+    }
 }

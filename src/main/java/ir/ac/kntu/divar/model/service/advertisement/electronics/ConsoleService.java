@@ -72,6 +72,10 @@ public class ConsoleService implements Handler {
 
     @Override
     public AdvertisementDTO apply(Long aLong) {
-        return mapper.convert(repository.findById(aLong).orElseThrow());
+        return mapper.convert(findById(aLong));
+    }
+
+    public Console findById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }

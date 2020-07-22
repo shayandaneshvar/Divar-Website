@@ -105,4 +105,18 @@ public class ElectronicsService implements Handler {
             return res;
         }).filter(Objects::nonNull).findFirst().orElse(null);
     }
+
+    public ElectronicsAdvertisement findById(Long id) {
+        ElectronicsAdvertisement ad = consoleService.findById(id);
+        if (ad == null) {
+            ad = pcService.findById(id);
+        }
+        if (ad == null) {
+            ad = mobileService.findById(id);
+        }
+        if (ad == null) {
+            ad = laptopService.findById(id);
+        }
+        return ad;
+    }
 }

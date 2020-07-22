@@ -89,4 +89,15 @@ public class RealEstateService implements Handler {
             return res;
         }).filter(Objects::nonNull).findFirst().orElse(null);
     }
+
+    public RealEstateAdvertisement findById(Long id) {
+        RealEstateAdvertisement ad = commercialSellService.findById(id);
+        if (ad == null) {
+            ad = residentialRentService.findById(id);
+        }
+        if (ad == null) {
+            ad = residentialSellService.findById(id);
+        }
+        return ad;
+    }
 }

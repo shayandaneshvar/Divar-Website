@@ -22,7 +22,7 @@ public class User extends BaseEntity<Long> {
     @Basic(optional = false)
     @Column(length = 15)
     private String mobile;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "divar_id")
     private Divar divar;
 }

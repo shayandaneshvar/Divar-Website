@@ -25,7 +25,8 @@ public class Vehicle2AdDto<T extends VehicleAdvertisement> implements
                     .setTitle(src.getTitle())
                     .setDescription(src.getDescription())//advertisement
                     .setPrice(src.getPrice().intValue())
-                    .setKilometerage(src.getKilometerage().intValue());
+                    .setKilometerage(src.getKilometerage() == null ? null :
+                            src.getKilometerage().intValue());
         }
         Truck src = (Truck) Optional.of(t).orElseThrow();
         return new AdvertisementDTO()
@@ -36,6 +37,7 @@ public class Vehicle2AdDto<T extends VehicleAdvertisement> implements
                 .setTitle(src.getTitle())
                 .setDescription(src.getDescription())//advertisement
                 .setPrice(src.getPrice().intValue())
-                .setKilometerage(src.getKilometerage().intValue());
+                .setKilometerage(src.getKilometerage() == null ? null :
+                        src.getKilometerage().intValue());
     }
 }

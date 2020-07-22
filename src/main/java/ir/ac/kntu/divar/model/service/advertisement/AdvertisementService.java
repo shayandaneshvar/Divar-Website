@@ -1,6 +1,5 @@
 package ir.ac.kntu.divar.model.service.advertisement;
 
-import ir.ac.kntu.divar.controller.VehicleController;
 import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.Advertisement;
 import ir.ac.kntu.divar.model.service.advertisement.electronics.ElectronicsService;
@@ -21,6 +20,7 @@ public class AdvertisementService implements Handler {
     private final ElectronicsService electronicsService;
     private final VehicleService vehicleService;
     private final RealEstateService realEstateService;
+
     public List<? extends Advertisement> getAllByCity(String city) {
         List<Advertisement> list =
                 new ArrayList<>(electronicsService.getAllByCity(city));
@@ -28,10 +28,11 @@ public class AdvertisementService implements Handler {
         list.addAll(realEstateService.getAllByCity(city));
         return list;
     }
+
     @Override
     public AdvertisementDTO apply(Long aLong) {
         List<Handler> handlers = Arrays.asList(electronicsService,
-                vehicleService,realEstateService);
+                vehicleService, realEstateService);
         return handlers.stream().map(z -> {
             AdvertisementDTO res;
             try {
@@ -41,5 +42,17 @@ public class AdvertisementService implements Handler {
             }
             return res;
         }).filter(Objects::nonNull).findFirst().orElse(null);
+    }
+
+    public Advertisement findById(String s) {
+        Long id = Long.valueOf(s);
+        Advertisement ad = electronicsService.findById(id);
+        if (ad == null) {
+            ad = realEstateService.findById(id);
+        }
+        if (ad == null) {
+            ad = vehicleService.findById(id);
+        }
+        return ad;
     }
 }

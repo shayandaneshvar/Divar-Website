@@ -6,6 +6,7 @@ import ir.ac.kntu.divar.model.dto.AdvertisementDTO;
 import ir.ac.kntu.divar.model.dto.electronics.NewElectronicsDTO;
 import ir.ac.kntu.divar.model.dto.filters.GeneralFilterDTO;
 import ir.ac.kntu.divar.model.entity.advertisement.electronics.PC;
+import ir.ac.kntu.divar.model.entity.advertisement.vehicle.Truck;
 import ir.ac.kntu.divar.model.entity.location.City;
 import ir.ac.kntu.divar.model.entity.location.Zone;
 import ir.ac.kntu.divar.model.entity.user.User;
@@ -72,6 +73,9 @@ public class PCService implements Handler {
 
     @Override
     public AdvertisementDTO apply(Long aLong) {
-        return mapper.convert(repository.findById(aLong).orElseThrow());
+        return mapper.convert(findById(aLong));
+    }
+    public PC findById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }
